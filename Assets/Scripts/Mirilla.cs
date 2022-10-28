@@ -7,8 +7,6 @@ public class Mirilla : MonoBehaviour
 {
     public Transform personaje;
     public int size = 1;
-    public float factor;
-
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +29,7 @@ public class Mirilla : MonoBehaviour
             xyVector *= size;
             vectorSize = size;
         }
-
-        factor = Mathf.Clamp01(vectorSize / size);
         transform.position = xyVector + personaje.position;
     }
+
 }
