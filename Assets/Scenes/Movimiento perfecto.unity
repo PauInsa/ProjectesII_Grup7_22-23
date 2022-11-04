@@ -202,10 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e6ca33e5ce6e64cb2015799a118bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeedX: 4
-  maxSpeedY: 31.5
-  movementMagnitude: 22
-  jumpMagnitude: 54.1
+  personaje: {fileID: 203465889}
   rayOriginTransform: {fileID: 1542492929}
   rb: {fileID: 203465885}
 --- !u!212 &203465888
@@ -268,7 +265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203465884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.91, y: -3.86, z: 0}
+  m_LocalPosition: {x: -4.56, y: -4.05, z: 0}
   m_LocalScale: {x: 1, y: 2.1747, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

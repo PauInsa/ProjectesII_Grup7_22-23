@@ -12,7 +12,11 @@ public class Mov : MonoBehaviour
     float movementMagnitude = 1.0f;
     float jumpMagnitude;
 
-    public bool equipedWeapon;
+    int lives;
+
+    public Transform personaje;
+
+    bool equipedWeapon;
 
     public Transform rayOriginTransform;
 
@@ -25,7 +29,7 @@ public class Mov : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        
+        lives = 5;
     }
 
     // Update is called once per frame
@@ -82,16 +86,39 @@ public class Mov : MonoBehaviour
         rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
         if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
             rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+
         if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
             rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
 
-        if(Input.GetKeyDown(KeyCode.B))
+        //Retroceso
+        if(equipedWeapon)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                recoil();
+            }
+        }
+
+
+        //Input de agarrar el arma
+        if (Input.GetKeyDown(KeyCode.B))
         {
             if (equipedWeapon == false)
                 equipedWeapon = true;
             else
                 equipedWeapon = false;
         }
+    }
+
+    void recoil()
+    {
+        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)personaje.position;
+        Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
+
+        xyVector.Normalize();
+
+        rb.AddForce(xyVector * -4000.0f);
     }
 
     void jump()
@@ -104,5 +131,8 @@ public class Mov : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
         }
+
     }
+
+    
 }
