@@ -8,16 +8,18 @@ public class Pistola : MonoBehaviour
     public Collider2D pistolCollider;
 
     private bool isWithPlayer;
-    private int size;
+    private float size;
 
     public Transform pistolaTransform;
     public SpriteRenderer pistolaRenderer;
+
+    public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
     {
         isWithPlayer = true;
-        size = 1;
+        size = 0.7f;
         pistolCollider.enabled = false;
     }
 
@@ -25,10 +27,11 @@ public class Pistola : MonoBehaviour
     void Update()
     {
         //Sprite rotation
-        Vector3 targetRotation = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        var angle = Mathf.Atan2(targetRotation.y, targetRotation.x) * Mathf.Rad2Deg;
-        pistolaTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        if (angle > 90 || angle < -90)
+        /*Vector2 targetRotation = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        Quaternion angle = Quaternion.LookRotation(Vector3.forward, targetRotation.normalized);
+        pistolaTransform.rotation = angle;
+        //angle = Quaternion.Euler(90, 0, 0);
+        if (angle.eulerAngles.z > 90 || angle.eulerAngles.z < -90)
         {
 
             pistolaRenderer.flipY = true;
@@ -36,14 +39,13 @@ public class Pistola : MonoBehaviour
         else
         {
             pistolaRenderer.flipX = true;
-        }
-
+        }*/
+        
         //Input
         if(Input.GetMouseButton(0))
         {
             //Shoot
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 shootDirection = mouseWorldPosition - personaje.position;
+            
 
         }
         else if(Input.GetMouseButton(1))
@@ -55,17 +57,13 @@ public class Pistola : MonoBehaviour
         {
             //Position respecto Player
             if (size <= 0) return;
-            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 vectorPjMouse = mouseWorldPosition - personaje.position;
-            Vector3 xyVector = new Vector3(vectorPjMouse.x, vectorPjMouse.y, 0.0f);
-            float vectorSize = xyVector.magnitude;
-            if (vectorSize > size)
-            {
-                xyVector.Normalize();
-                xyVector *= size;
-                vectorSize = size;
-            }
-            transform.position = xyVector + personaje.position;
+            Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)personaje.position;
+            //float vectorSize = vectorPjMouse.magnitude;
+            vectorPjMouse.Normalize();
+            vectorPjMouse *= size;
+            //vectorSize = size;
+            transform.position = (Vector3)vectorPjMouse + personaje.position;
         }
         else
         {
@@ -82,15 +80,17 @@ public class Pistola : MonoBehaviour
 
     /*void Shoot()
     {
-        GameObject goBullet = Instantiate(bullet, gun.position, Quaternion.identity);
-        LinearMovement bulletMovement = goBullet.GetComponent<LinearMovement>();
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 shootDirection = mouseWorldPosition - personaje.position;
 
-        if (spriteRenderer.flipX == false)
-        {
-            bulletMovement.SetDirection(Vector3.left);
-        }
-        else
-            bulletMovement.SetDirection(Vector3.right);
+        GameObject goBullet = Instantiate(bullet, pistolaTransform.position, Quaternion.identity);
+
+
+        BulletMov bulletMovement = goBullet.GetComponent<BulletMov>();
+
+        
+        bulletMovement.SetDirection(shootDirection);
+
 
 
 
@@ -99,6 +99,5 @@ public class Pistola : MonoBehaviour
         if (collides == true)
         {
             Destroy(goBullet);
-        }
-    }*/
-}
+        }*/
+    }
