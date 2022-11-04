@@ -32,7 +32,7 @@ public class GrabObjects : MonoBehaviour
         {
 
             //grab object
-            if(Input.GetKey(KeyCode.B) && grabbedObject == null)
+            if(Input.GetKeyDown(KeyCode.B) && grabbedObject == null)
             {
                 grabbedObject = hitInfo.collider.gameObject;
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -41,7 +41,7 @@ public class GrabObjects : MonoBehaviour
             }
 
             //release object
-            else if (Input.GetKey(KeyCode.N))
+            else if (Input.GetKeyDown(KeyCode.B))
             {
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
                 grabbedObject.transform.SetParent(null);
