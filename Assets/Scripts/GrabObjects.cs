@@ -14,7 +14,7 @@ public class GrabObjects : MonoBehaviour
     [SerializeField]
     private float rayDistance;
 
-    private GameObject grabbedObject;
+    public GameObject grabbedObject;
     private int layerIndex;
 
     // Start is called before the first frame update

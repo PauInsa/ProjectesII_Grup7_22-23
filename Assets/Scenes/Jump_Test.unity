@@ -499,7 +499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319314079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 1.84, z: 0}
+  m_LocalPosition: {x: -1.91, y: 1.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1684,7 +1684,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111477551}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.59, y: 2.168, z: 0}
+  m_LocalPosition: {x: -3.1, y: 2.168, z: 0}
   m_LocalScale: {x: 1, y: 2.1359, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1732,10 +1732,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e6ca33e5ce6e64cb2015799a118bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeedX: 10
-  maxSpeedY: 10
-  movementMagnitude: 10
-  jumpMagnitude: 10
+  grabObjects: {fileID: 0}
+  personaje: {fileID: 0}
   rayOriginTransform: {fileID: 0}
   rb: {fileID: 2111477552}
 --- !u!114 &2111477557
@@ -1753,3 +1751,4 @@ MonoBehaviour:
   grabPoint: {fileID: 2050917428}
   rayPoint: {fileID: 367995027}
   rayDistance: 0.2
+  grabbedObject: {fileID: 0}

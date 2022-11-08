@@ -12,16 +12,17 @@ public class Mov : MonoBehaviour
     float movementMagnitude = 1.0f;
     float jumpMagnitude;
 
+    public GrabObjects grabObjects;
+
     int lives;
 
     public Transform personaje;
-
-    bool equipedWeapon;
 
     public Transform rayOriginTransform;
 
     public Rigidbody2D rb;
 
+    bool together;
 
 
     // Start is called before the first frame update
@@ -35,20 +36,29 @@ public class Mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Comprobar si estan juntos
-        if (equipedWeapon)
+        if(grabObjects.grabbedObject == null)
         {
-            maxSpeedX = 3.0f;
-            maxSpeedY = 31.5f;
-            movementMagnitude = 16.0f;
-            jumpMagnitude = 0.0f;
+            together = false;
         }
         else
+        {
+            together = true;
+        }
+
+        //Comprobar si estan juntos
+        if (!together)
         {
             maxSpeedX = 4.0f;
             maxSpeedY = 31.5f;
             movementMagnitude = 24.0f;
             jumpMagnitude = 54.1f;
+        }
+        else
+        {
+            maxSpeedX = 3.0f;
+            maxSpeedY = 31.5f;
+            movementMagnitude = 16.0f;
+            jumpMagnitude = 0.0f;
         }
 
         //Movimiento
@@ -91,22 +101,12 @@ public class Mov : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
 
         //Retroceso
-        if(equipedWeapon)
+        if(together)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 recoil();
             }
-        }
-
-
-        //Input de agarrar el arma
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            if (equipedWeapon == false)
-                equipedWeapon = true;
-            else
-                equipedWeapon = false;
         }
     }
 
