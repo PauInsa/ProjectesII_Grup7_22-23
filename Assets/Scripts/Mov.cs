@@ -31,6 +31,8 @@ public class Mov : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        grabObjects.grabbedObject = null;
     }
 
     // Update is called once per frame
