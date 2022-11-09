@@ -99,11 +99,15 @@ public class Mov : MonoBehaviour
 
         rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
 
-        if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
-            rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
+        if(rb.velocity.x > maxSpeedX)
+        {
+            rb.velocity.x = maxSpeedX;
+        }
+        //if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
+        //    rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
 
-        if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
-            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+        //if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
+        //    rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
 
         
 
