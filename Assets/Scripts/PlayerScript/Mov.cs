@@ -14,7 +14,7 @@ public class Mov : MonoBehaviour
 
     public GrabObjects grabObjects;
 
-    
+    public AudioSource fireSound, reciveDamage;
 
     public Transform personaje;
 
@@ -135,6 +135,7 @@ public class Mov : MonoBehaviour
 
     void recoil()
     {
+        fireSound.Play();
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)personaje.position;
         Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
