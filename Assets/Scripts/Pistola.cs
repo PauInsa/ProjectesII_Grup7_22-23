@@ -27,10 +27,6 @@ public class Pistola : MonoBehaviour
     void Update()
     {
         //Sprite rotation
-        /*Vector2 targetRotation = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        Quaternion angle = Quaternion.LookRotation(Vector3.forward, targetRotation.normalized);
-        pistolaTransform.rotation = angle;
-        //angle = Quaternion.Euler(90, 0, 0);
         if (angle.eulerAngles.z > 90 || angle.eulerAngles.z < -90)
         {
 
@@ -39,7 +35,7 @@ public class Pistola : MonoBehaviour
         else
         {
             pistolaRenderer.flipX = true;
-        }*/
+        }
         
         //Input
         if(Input.GetMouseButton(0))
@@ -53,16 +49,14 @@ public class Pistola : MonoBehaviour
             //Reload
         }
 
-       if (isWithPlayer)
+        if (isWithPlayer)
         {
             //Position respecto Player
             if (size <= 0) return;
             Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)personaje.position;
-            //float vectorSize = vectorPjMouse.magnitude;
             vectorPjMouse.Normalize();
             vectorPjMouse *= size;
-            //vectorSize = size;
             transform.position = (Vector3)vectorPjMouse + personaje.position;
         }
         else
@@ -76,28 +70,4 @@ public class Pistola : MonoBehaviour
     {
         isWithPlayer = !isWithPlayer;
         pistolCollider.enabled = !isWithPlayer;
-    }
-
-    /*void Shoot()
-    {
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 shootDirection = mouseWorldPosition - personaje.position;
-
-        GameObject goBullet = Instantiate(bullet, pistolaTransform.position, Quaternion.identity);
-
-
-        BulletMov bulletMovement = goBullet.GetComponent<BulletMov>();
-
-        
-        bulletMovement.SetDirection(shootDirection);
-
-
-
-
-        bool collides = false;
-
-        if (collides == true)
-        {
-            Destroy(goBullet);
-        }*/
     }
