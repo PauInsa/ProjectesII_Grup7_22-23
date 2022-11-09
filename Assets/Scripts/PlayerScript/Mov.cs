@@ -22,7 +22,7 @@ public class Mov : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    bool together;
+    public bool together;
 
     
 
@@ -31,14 +31,13 @@ public class Mov : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        grabObjects.grabbedObject = null;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Vida
-        
-
 
         //Comprobar si estan unidos
         if(grabObjects.grabbedObject == null)
@@ -100,16 +99,28 @@ public class Mov : MonoBehaviour
 
         rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
 
+        //if(rb.velocity.x > maxSpeedX || rb.velocity.x <= -maxSpeedX)
+        //{
+        //    rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+        //}
+
+        //if (rb.velocity.y > maxSpeedY || rb.velocity.y <= -maxSpeedY)
+        //{
+        //    rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
+        //}
+
         if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
             rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
-
-        if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
+        else if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
             rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+        else if(Mathf.Abs(rb.velocity.y) > maxSpeedY && Mathf.Abs(rb.velocity.x) > maxSpeedX)
+        {
+            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
+        }
 
-        
 
         //Retroceso
-        if(together)
+        if (together)
         {
             if (Input.GetMouseButtonDown(0))
             {
