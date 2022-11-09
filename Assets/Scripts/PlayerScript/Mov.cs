@@ -22,7 +22,7 @@ public class Mov : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    bool together;
+    public bool together;
 
     
 
@@ -38,9 +38,6 @@ public class Mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Vida
-        
-
 
         //Comprobar si estan unidos
         if(grabObjects.grabbedObject == null)
