@@ -8,6 +8,7 @@ public class GunMov : MonoBehaviour
     public Transform gun;
     public Rigidbody2D rb;
 
+    public AudioSource fireSound;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class GunMov : MonoBehaviour
 
         void recoil()
         {
+            fireSound.Play();       
             Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gun.position;
             Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
