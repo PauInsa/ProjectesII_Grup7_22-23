@@ -274,13 +274,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275123749}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.64, y: 3.44, z: 0}
-  m_LocalScale: {x: 1.4579, y: 0.3386, z: 1}
+  m_LocalPosition: {x: 1.9199, y: 2.309, z: 0}
+  m_LocalScale: {x: 0.63360333, y: 0.3386, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1971763604}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1756404024}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &275123752
 SpriteRenderer:
@@ -367,16 +367,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275123749}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 199407706522c2041805f2004d46e9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  personaje: {fileID: 2111477554}
+  gunHolder: {fileID: 1756404024}
   pistolCollider: {fileID: 275123753}
-  pistolaTransform: {fileID: 275123750}
-  pistolaRenderer: {fileID: 275123752}
-  bullet: {fileID: 2428852657620285833, guid: 90105bd7af9176544bb5136bba41253c, type: 3}
 --- !u!114 &275123755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,7 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b1e1a88bd8fcc4e834b37bbb40ef15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 2111477554}
+  gun: {fileID: 275123750}
+  gunRender: {fileID: 275123752}
   bullet: {fileID: 2428852657620285833, guid: 90105bd7af9176544bb5136bba41253c, type: 3}
   bulletSpd: 1
   shootPoint: {fileID: 1971763604}
@@ -1497,6 +1495,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756404024}
+  - component: {fileID: 1756404025}
   m_Layer: 7
   m_Name: PistolHolder
   m_TagString: Untagged
@@ -1515,10 +1514,24 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 275123750}
   m_Father: {fileID: 2111477554}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1756404025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756404023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e15e2c9c89d1c67419eeab0fcc040494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2111477554}
 --- !u!1 &1845582369
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public Transform gun;
+    public SpriteRenderer gunRender;
     Vector2 direction;
     public GameObject bullet;
     public float bulletSpd;
@@ -29,6 +30,17 @@ public class Shoot : MonoBehaviour
             //Shoot
             GameObject goBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
             goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right*bulletSpd);
+        }
+
+        //Sprite rotation
+        if (mouseWorldPosition.x >= gun.position.x)
+        {
+
+            gunRender.flipY = true;
+        }
+        else
+        {
+            gunRender.flipY = false;
         }
     }
 }
