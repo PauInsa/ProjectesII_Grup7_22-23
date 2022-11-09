@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public GameObject[] hearts;
     int lifes;
 
+    public AudioSource reciveDamage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
 
     public void PlayerDamage(int damage)
     {
+        reciveDamage.Play();
         lifes -= damage;
         CheckLife();
     }
