@@ -14,7 +14,7 @@ public class Mov : MonoBehaviour
 
     public GrabObjects grabObjects;
 
-    int lives;
+    
 
     public Transform personaje;
 
@@ -24,18 +24,25 @@ public class Mov : MonoBehaviour
 
     bool together;
 
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        lives = 5;
+        grabObjects.grabbedObject = null;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Vida
+        
+
+
+        //Comprobar si estan unidos
         if(grabObjects.grabbedObject == null)
         {
             together = false;
@@ -45,7 +52,7 @@ public class Mov : MonoBehaviour
             together = true;
         }
 
-        //Comprobar si estan juntos
+        //Mov
         if (!together)
         {
             maxSpeedX = 4.0f;
@@ -94,11 +101,14 @@ public class Mov : MonoBehaviour
         
 
         rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
-        if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
-            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
 
         if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
             rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
+
+        if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
+            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+
+        
 
         //Retroceso
         if(together)
@@ -109,6 +119,7 @@ public class Mov : MonoBehaviour
             }
         }
     }
+
 
     void recoil()
     {
@@ -133,6 +144,4 @@ public class Mov : MonoBehaviour
         }
 
     }
-
-    
 }
