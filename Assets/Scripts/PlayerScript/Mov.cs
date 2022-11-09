@@ -24,7 +24,7 @@ public class Mov : MonoBehaviour
 
     public bool together;
 
-    
+    private bool isFacingRight = true;
 
 
     // Start is called before the first frame update
@@ -38,6 +38,7 @@ public class Mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        horizontal = Input.GetAxisRaw("Horizontal");
 
         //Comprobar si estan unidos
         if(grabObjects.grabbedObject == null)
@@ -79,11 +80,13 @@ public class Mov : MonoBehaviour
             else if (Input.GetKey(KeyCode.A))
             {
                 horizontal = -1.0f;
+            Flip();
             }
 
             else if (Input.GetKey(KeyCode.D))
             {
                 horizontal = 1.0f;
+            Flip();
             }
             else
             {
@@ -140,5 +143,17 @@ public class Mov : MonoBehaviour
             rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
         }
 
+    }
+
+    void Flip()
+    {
+        if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+
+            isFacingRight = !isFacingRight;
+            Vector3 localscale = personaje.localScale;
+            localscale.x *= -1f;
+            personaje.localScale = localscale;
+        }
     }
 }
