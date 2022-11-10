@@ -24,8 +24,6 @@ public class Mov : MonoBehaviour
 
     public bool together;
 
-    
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +34,6 @@ public class Mov : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         //Comprobar si estan unidos
         together = pistolaScript.isWithPlayer;
 
@@ -59,33 +56,32 @@ public class Mov : MonoBehaviour
         //Movimiento
         grounded = Physics2D.Raycast(rayOriginTransform.position, Vector2.down, 0.2f);
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
+        if (Input.GetKey(KeyCode.W))
+        {
+            
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
 
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                horizontal = -1.0f;
-            }
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            horizontal = -1.0f;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            horizontal = 1.0f;
+        }
+        else
+        {
+            horizontal = 0.0f;
+        }
 
-            else if (Input.GetKey(KeyCode.D))
-            {
-                horizontal = 1.0f;
-            }
-            else
-            {
-                horizontal = 0.0f;
-            }
-
-            //Salto
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
-            {
-                jump();
-            }
+        //Salto
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        {
+            jump();
+        }
         
 
         rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
@@ -109,21 +105,18 @@ public class Mov : MonoBehaviour
             rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
         }
 
-
-        //Retroceso
-        if (together)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                recoil();
-            }
-        }
+        ////Retroceso
+        //if (together)
+        //{
+        //    if (Input.GetMouseButtonDown(0))
+        //    {
+        //        recoil();
+        //    }
+        //}
     }
 
-
-    void recoil()
+    public void recoil()
     {
-        fireSound.Play();
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)personaje.position;
         Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);

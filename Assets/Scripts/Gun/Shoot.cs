@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
+    public Mov movScript;
+
     public Transform gun;
     public SpriteRenderer gunRender;
     Vector2 direction;
-    public GameObject bullet;
-    public Transform shootPoint;
 
+    public Transform shootPoint;
+    public Rigidbody2D rb;
+    public AudioSource fireSound;
+
+    public GameObject bullet;
     public float bulletSpd;
     public float fireRate;
-    public float dispearTime;
+    public float dissapearTime;
     float deltaTime;
 
 
@@ -35,24 +40,33 @@ public class Shoot : MonoBehaviour
 
             if(Time.time > deltaTime)
             {
-                deltaTime = Time.time + 1/fireRate;
+                recoil();
+                if (movScript.together == true)
+                    movScript.recoil();
+
+                deltaTime = Time.time + 1 / fireRate;
                 GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
                 goBullet.transform.right = direction;
                 goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
-                Destroy(goBullet, dispearTime);
+                Destroy(goBullet, dissapearTime);
             }
-
+            
         }
 
         //Sprite rotation
         if (mouseWorldPosition.x >= gun.position.x)
-        {
-
-            gunRender.flipY = true;
-        }
-        else
-        {
             gunRender.flipY = false;
-        }
+        else
+            gunRender.flipY = true;
+
+    }
+    void recoil()
+    {
+        fireSound.Play();
+        Vector2 xyVector = new Vector2(direction.x, direction.y);
+        xyVector.Normalize();
+        rb.AddForce(xyVector * -1500.0f);
     }
 }
+
+
