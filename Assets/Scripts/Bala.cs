@@ -7,8 +7,9 @@ public class Bala : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Wall"))
+        if (collision.collider.CompareTag("Wall"))
         {
+            Debug.Log("Pared ");
             Destroy(this);
         }
     }

@@ -69,11 +69,13 @@ public class Mov : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.A))
             {
+                this.transform.localScale = new Vector2(-1, 1);
                 horizontal = -1.0f;
             }
 
             else if (Input.GetKey(KeyCode.D))
             {
+                this.transform.localScale = new Vector2(1, 1);
                 horizontal = 1.0f;
             }
             else

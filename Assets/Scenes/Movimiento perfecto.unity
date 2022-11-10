@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e6ca33e5ce6e64cb2015799a118bfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabObjects: {fileID: 203465890}
+  pistolaScript: {fileID: 0}
   fireSound: {fileID: 203465892}
   personaje: {fileID: 203465889}
   rayOriginTransform: {fileID: 1542492929}
@@ -295,11 +295,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced4bedc95aad5c46a847dde8b543bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pistolaScript: {fileID: 0}
   grabPoint: {fileID: 1542595947}
   rayPoint: {fileID: 1178831655}
   rayDistance: 2
   PlayerAimDirection: {fileID: 203465889}
-  grabbedObject: {fileID: 1348949520}
+  gun: {fileID: 1348949520}
   forceThrow: 40
 --- !u!114 &203465891
 MonoBehaviour:
@@ -1807,7 +1808,6 @@ GameObject:
   - component: {fileID: 1348949524}
   - component: {fileID: 1348949523}
   - component: {fileID: 1348949522}
-  - component: {fileID: 1348949526}
   - component: {fileID: 1348949527}
   - component: {fileID: 1348949528}
   - component: {fileID: 1348949529}
@@ -1907,18 +1907,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1348949526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348949520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d02595b0c5fb545832c55266472fad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!60 &1348949527
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1970,8 +1958,6 @@ MonoBehaviour:
   gun: {fileID: 1348949524}
   rb: {fileID: 1348949522}
   fireSound: {fileID: 1348949529}
-  gunPoint: {fileID: 1286751377}
-  bala: {fileID: 8747169348790222647, guid: 09cece952bde8924584f4024b03627e4, type: 3}
 --- !u!82 &1348949529
 AudioSource:
   m_ObjectHideFlags: 0
