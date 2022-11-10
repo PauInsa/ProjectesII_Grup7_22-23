@@ -10,8 +10,6 @@ public class GunMov : MonoBehaviour
 
     public AudioSource fireSound;
 
-    public Transform gunPoint;
-    public GameObject bala;
 
 
     void Start()
@@ -27,20 +25,8 @@ public class GunMov : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Fire();
                 recoil();
             }
-        }
-
-        void Fire()
-        {
-            Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gun.position;
-            Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
-
-            xyVector.Normalize();
-
-            Instantiate(bala, gunPoint.position, Quaternion.identity);
         }
 
         void recoil()

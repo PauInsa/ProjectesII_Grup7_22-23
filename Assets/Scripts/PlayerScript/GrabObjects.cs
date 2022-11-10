@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrabObjects : MonoBehaviour
 {
+    public Pistola pistolaScript;
 
     [SerializeField]
     private Transform grabPoint;
@@ -17,7 +18,7 @@ public class GrabObjects : MonoBehaviour
     [SerializeField]
     private Transform PlayerAimDirection;
 
-    public GameObject grabbedObject;
+    public GameObject gun;
     private int layerIndex;
 
     public float forceThrow = 0f;
@@ -38,28 +39,27 @@ public class GrabObjects : MonoBehaviour
         {
 
             //grab object
-            if(Input.GetKeyDown(KeyCode.B) && grabbedObject == null)
-            {
-                grabbedObject = hitInfo.collider.gameObject;
-                grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
-                grabbedObject.transform.position = grabPoint.position;
-                grabbedObject.transform.SetParent(transform);
-            }
+            pistolaScript.isWithPlayer = true;
+            //grabbedObject = hitInfo.collider.gameObject;
+            //grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
+            //grabbedObject.transform.position = grabPoint.position;
+            //grabbedObject.transform.SetParent(transform);
 
             //release object
-            else if (Input.GetKeyDown(KeyCode.B))
-            {
-
-                grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                Vector2 xyvector = new Vector2(PlayerAimDirection.x, PlayerAimDirection.y);
-                xyvector.Normalize();
-                grabbedObject.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
-                grabbedObject.transform.SetParent(null);
-                grabbedObject = null;
-            }
+            
         }
 
-        Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
-        
+        if (Input.GetKeyDown(KeyCode.B) && pistolaScript.isWithPlayer ==true)
+        {
+            pistolaScript.isWithPlayer = false;
+            gun.GetComponent<Rigidbody2D>().isKinematic = false;
+            Vector2 xyvector = new Vector2(PlayerAimDirection.localScale.x, PlayerAimDirection.localScale.y);
+            xyvector.Normalize();
+            gun.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
+            gun.transform.SetParent(null);
+        }
+
+        //Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
+
     }
 }
