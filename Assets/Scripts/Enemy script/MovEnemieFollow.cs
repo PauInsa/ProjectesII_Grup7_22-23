@@ -11,7 +11,7 @@ public class MovEnemieFollow : MonoBehaviour
 
     void Start()
     {
-        
+        //player_pos = GameObject.Find("Player").transform;
     }
 
     void Update()
