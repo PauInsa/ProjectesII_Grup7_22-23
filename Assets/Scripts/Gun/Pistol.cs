@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pistol : MonoBehaviour
 {
+    public SpriteRenderer spriteRenderer;
 
     // Update is called once per frame
     void Update()
@@ -12,5 +13,16 @@ public class Pistol : MonoBehaviour
         Vector2 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousepos - pistolpos;
         transform.right = direction;
+
+        if(mousepos.x < pistolpos.x)
+        {
+            //spriteRenderer.flipX = true;
+            spriteRenderer.flipY = true;
+        }
+        else if(mousepos.x > pistolpos.x)
+        {
+            //spriteRenderer.flipX = false;
+            spriteRenderer.flipY = false;
+        }
     }
 }
