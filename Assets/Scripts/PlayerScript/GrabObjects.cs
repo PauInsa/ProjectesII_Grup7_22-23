@@ -51,7 +51,7 @@ public class GrabObjects : MonoBehaviour
             {
 
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                Vector2 xyvector = new Vector2(PlayerAimDirection.localScale.x, PlayerAimDirection.localScale.y);
+                Vector2 xyvector = new Vector2(PlayerAimDirection.x, PlayerAimDirection.y);
                 xyvector.Normalize();
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
                 grabbedObject.transform.SetParent(null);
