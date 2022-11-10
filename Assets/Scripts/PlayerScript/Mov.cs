@@ -11,6 +11,7 @@ public class Mov : MonoBehaviour
     bool grounded;
     float movementMagnitude = 1.0f;
     float jumpMagnitude;
+    bool isFacingRight = true;
 
     public Pistola pistolaScript;
 
@@ -29,6 +30,7 @@ public class Mov : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        horizontal = Input.GetAxisRaw("Horizontal");
     }
 
     // Update is called once per frame
@@ -67,10 +69,12 @@ public class Mov : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             horizontal = -1.0f;
+            Flip();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             horizontal = 1.0f;
+            Flip();
         }
         else
         {
@@ -137,5 +141,18 @@ public class Mov : MonoBehaviour
             rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
         }
 
+    }
+
+    private void Flip()
+    {
+
+        if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        {
+
+            isFacingRight = !isFacingRight;
+            Vector3 localScale = transform.localScale;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
+        }
     }
 }
