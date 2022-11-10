@@ -63,12 +63,8 @@ public class Shoot : MonoBehaviour
     void recoil()
     {
         fireSound.Play();
-        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gun.position;
-        Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
-
+        Vector2 xyVector = new Vector2(direction.x, direction.y);
         xyVector.Normalize();
-
         rb.AddForce(xyVector * -1500.0f);
     }
 }

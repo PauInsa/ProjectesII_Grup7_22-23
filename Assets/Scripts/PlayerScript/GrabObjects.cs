@@ -7,9 +7,6 @@ public class GrabObjects : MonoBehaviour
     public Pistola pistolaScript;
 
     [SerializeField]
-    private Transform grabPoint;
-
-    [SerializeField]
     private Transform rayPoint;
 
     [SerializeField]
@@ -37,16 +34,8 @@ public class GrabObjects : MonoBehaviour
 
         if(hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
         {
-
             //grab object
             pistolaScript.isWithPlayer = true;
-            //grabbedObject = hitInfo.collider.gameObject;
-            //grabbedObject.GetComponent<Rigidbody2D>().isKinematic = true;
-            //grabbedObject.transform.position = grabPoint.position;
-            //grabbedObject.transform.SetParent(transform);
-
-            //release object
-            
         }
 
         if (Input.GetKeyDown(KeyCode.B) && pistolaScript.isWithPlayer ==true)
@@ -58,8 +47,6 @@ public class GrabObjects : MonoBehaviour
             gun.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
             gun.transform.SetParent(null);
         }
-
         //Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
-
     }
 }
