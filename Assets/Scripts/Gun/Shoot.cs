@@ -12,18 +12,25 @@ public class Shoot : MonoBehaviour
 
     public Transform shootPoint;
     public Rigidbody2D rb;
-    public AudioSource fireSound;
+    public AudioSource fireSound, reloadSound;
 
     public GameObject bullet;
     public float bulletSpd;
     public float fireRate;
-    float deltaTime;
+    public float reloadTime;
+    float deltaTimeFire;
+
+    public int ammo;
+
+    bool reloading;
+    float deltaTimeReload;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        ammo = 10;
+        reloading = false;
     }
 
     // Update is called once per frame
@@ -36,19 +43,25 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //Shoot
-
-            if(Time.time > deltaTime)
+            if (ammo > 0 && reloading == false)
             {
-                recoil();
-                if (movScript.together == true)
-                    movScript.recoil();
+                if (Time.time > deltaTimeFire)
+                {
+                    recoil();
+                    if (movScript.together == true)
+                        movScript.recoil();
 
-                deltaTime = Time.time + 1 / fireRate;
-                GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
-                goBullet.transform.right = direction;
-                goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
+                    deltaTimeFire = Time.time + 1 / fireRate;
+                    GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
+                    goBullet.transform.right = direction;
+                    goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
+
+                    ammo--;
+                }
             }
         }
+        else if (Input.GetMouseButtonDown(1))
+            reload();
 
         //Sprite rotation
         if (mouseWorldPosition.x >= gun.position.x)
@@ -56,6 +69,16 @@ public class Shoot : MonoBehaviour
         else
             gunRender.flipY = true;
 
+        //Reload
+        if (reloading == true)
+        {
+            reloadSound.Play();
+            if (Time.time > reloadTime + deltaTimeReload)
+            {
+                ammo = 10;
+                reloading = false;
+            }
+        }
     }
     void recoil()
     {
@@ -63,6 +86,14 @@ public class Shoot : MonoBehaviour
         Vector2 xyVector = new Vector2(direction.x, direction.y);
         xyVector.Normalize();
         rb.AddForce(xyVector * -1500.0f);
+    }
+    void reload()
+    {
+        if (reloading == false && ammo !=10)
+        {
+            reloading = true;
+            deltaTimeReload = Time.time;
+        }
     }
 }
 
