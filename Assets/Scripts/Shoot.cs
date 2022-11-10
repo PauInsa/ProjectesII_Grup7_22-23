@@ -8,14 +8,18 @@ public class Shoot : MonoBehaviour
     public SpriteRenderer gunRender;
     Vector2 direction;
     public GameObject bullet;
-    public float bulletSpd;
     public Transform shootPoint;
+
+    public float bulletSpd;
+    public float fireRate;
+    public float dispearTime;
+    float deltaTime;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,11 +29,19 @@ public class Shoot : MonoBehaviour
         direction = mouseWorldPosition - (Vector2)gun.position;
         gun.transform.right = direction;
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             //Shoot
-            GameObject goBullet = Instantiate(bullet, shootPoint.position, shootPoint.rotation);
-            goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right*bulletSpd);
+
+            if(Time.time > deltaTime)
+            {
+                deltaTime = Time.time + 1/fireRate;
+                GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
+                goBullet.transform.right = direction;
+                goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
+                Destroy(goBullet, dispearTime);
+            }
+
         }
 
         //Sprite rotation
