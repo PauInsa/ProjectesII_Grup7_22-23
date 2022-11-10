@@ -15,6 +15,9 @@ public class GrabObjects : MonoBehaviour
     [SerializeField]
     private Transform PlayerAimDirection;
 
+    [SerializeField]
+    private Transform shotPoint;
+
     public GameObject gun;
     private int layerIndex;
 
@@ -42,11 +45,19 @@ public class GrabObjects : MonoBehaviour
         {
             pistolaScript.isWithPlayer = false;
             gun.GetComponent<Rigidbody2D>().isKinematic = false;
-            Vector2 xyvector = new Vector2(PlayerAimDirection.localScale.x, PlayerAimDirection.localScale.y);
-            xyvector.Normalize();
-            gun.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
+            //Vector2 xyvector = new Vector2(PlayerAimDirection.localScale.x, PlayerAimDirection.localScale.y);
+            //xyvector.Normalize();
+            //gun.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
+            Throw();
             gun.transform.SetParent(null);
         }
         //Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
+    }
+
+    void Throw()
+    {
+
+        //GameObject gunnana = Instantiate(gun, shotPoint.position, shotPoint.rotation);
+        gun.GetComponent<Rigidbody2D>().velocity = gun.transform.right * forceThrow;
     }
 }
