@@ -9,7 +9,7 @@ public class Bala : MonoBehaviour
     {
         if (collision.collider.CompareTag("Wall"))
         {
-            Debug.Log("Pared ");
+            Debug.Log("Pared");
             Destroy(this);
         }
     }
