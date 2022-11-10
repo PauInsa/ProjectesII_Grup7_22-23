@@ -37,6 +37,10 @@ public class Player : MonoBehaviour
         {
             Destroy(hearts[2].gameObject);
         }
+        else if (lifes < 4)
+        {
+            Destroy(hearts[3].gameObject);
+        }
     }
 
     void Dead()
