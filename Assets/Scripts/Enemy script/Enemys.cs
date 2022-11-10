@@ -13,10 +13,17 @@ public class Enemys : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
-    public void PlayerDamage(int damage)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BallPlayer"))
+        {
+            EnemyDamage(1);
+        }
+    }
+
+    public void EnemyDamage(int damage)
     {
         //reciveDamage.Play();
         lifes -= damage;
