@@ -17,7 +17,6 @@ public class Shoot : MonoBehaviour
     public GameObject bullet;
     public float bulletSpd;
     public float fireRate;
-    public float dissapearTime;
     float deltaTime;
 
 
@@ -48,9 +47,7 @@ public class Shoot : MonoBehaviour
                 GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
                 goBullet.transform.right = direction;
                 goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
-                Destroy(goBullet, dissapearTime);
             }
-            
         }
 
         //Sprite rotation

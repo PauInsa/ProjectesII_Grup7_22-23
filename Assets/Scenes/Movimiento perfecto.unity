@@ -775,7 +775,7 @@ GameObject:
   - component: {fileID: 739454540}
   - component: {fileID: 739454539}
   m_Layer: 1
-  m_Name: Ground
+  m_Name: Wall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2220,7 +2220,6 @@ MonoBehaviour:
   bullet: {fileID: 2428852657620285833, guid: 90105bd7af9176544bb5136bba41253c, type: 3}
   bulletSpd: 1200
   fireRate: 1.6
-  dissapearTime: 1.6
 --- !u!114 &1348949531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,7 +2381,7 @@ GameObject:
   - component: {fileID: 1526597296}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
