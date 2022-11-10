@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Shoot : MonoBehaviour
 {
+    public TextMeshProUGUI amo_text;
+
     public Mov movScript;
 
     public Transform gun;
@@ -36,6 +40,8 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        amo_text.text = "Ammo: " + ammo;
+
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         direction = mouseWorldPosition - (Vector2)gun.position;
         gun.transform.right = direction;

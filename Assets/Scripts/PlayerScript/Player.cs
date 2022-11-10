@@ -54,4 +54,12 @@ public class Player : MonoBehaviour
         lifes -= damage;
         CheckLife();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ball") || collision.CompareTag("BallPlayer"))
+        {
+            PlayerDamage(1);
+        }
+    }
 }
