@@ -12,7 +12,7 @@ public class Mov : MonoBehaviour
     float movementMagnitude = 1.0f;
     float jumpMagnitude;
 
-    public GrabObjects grabObjects;
+    public Pistola pistolaScript;
 
     public AudioSource fireSound;
 
@@ -31,8 +31,6 @@ public class Mov : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        grabObjects.grabbedObject = null;
     }
 
     // Update is called once per frame
@@ -40,14 +38,7 @@ public class Mov : MonoBehaviour
     {
 
         //Comprobar si estan unidos
-        if(grabObjects.grabbedObject == null)
-        {
-            together = false;
-        }
-        else
-        {
-            together = true;
-        }
+        together = pistolaScript.isWithPlayer;
 
         //Mov
         if (!together)
