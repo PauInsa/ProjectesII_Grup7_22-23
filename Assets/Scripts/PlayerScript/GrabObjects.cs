@@ -49,9 +49,8 @@ public class GrabObjects : MonoBehaviour
             //release object
             else if (Input.GetKeyDown(KeyCode.B))
             {
-
                 grabbedObject.GetComponent<Rigidbody2D>().isKinematic = false;
-                Vector2 xyvector = new Vector2(PlayerAimDirection.x, PlayerAimDirection.y);
+                Vector2 xyvector = new Vector2(PlayerAimDirection.localScale.x, PlayerAimDirection.localScale.y);
                 xyvector.Normalize();
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
                 grabbedObject.transform.SetParent(null);
