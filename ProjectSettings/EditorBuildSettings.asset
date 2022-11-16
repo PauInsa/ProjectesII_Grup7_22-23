@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Jump_Test.unity
+    path: 
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Movimiento perfecto.unity
+    path: Assets/Scenes/Modificado.unity
     guid: ced88e1b0e14286419bf7bc4ba6a8494
   m_configObjects: {}

@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class Mov : MonoBehaviour
 {
-    float horizontal = 0.0f;
-    float vertical = 0.0f;
-    float maxSpeedX;
-    float maxSpeedY;
+    float horizontal;
+    float vertical;
+    public float maxSpeedX;
+    public float maxSpeedY;
     bool grounded;
-    float movementMagnitude = 1.0f;
-    float jumpMagnitude;
+    public float movementMagnitude;
+    public float jumpMagnitude;
     bool isFacingRight = true;
+
+    public float inicialDrag;
+
+    public float multiplicadorCancelarSalto;
+    public float multiplicadorGravedad;
+    private float escalarGravedad;
+    private bool botonSaltoArriba = true;
+    private bool saltar;
+
+    public float coyoteTime;
+    private float coyoteTimeCounter;
+
 
     public Pistola pistolaScript;
 
@@ -23,15 +35,21 @@ public class Mov : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    public bool together;
+    public bool together = false;
 
+    private bool A_Up;
+    private bool D_Up;
+
+    private float tiempoA_UP = 0.2f;
+    private float tiempoD_UP = 0.2f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         horizontal = Input.GetAxisRaw("Horizontal");
-    }
+        escalarGravedad = rb.gravityScale;
+    } 
 
     // Update is called once per frame
     void Update()
@@ -40,25 +58,31 @@ public class Mov : MonoBehaviour
         together = pistolaScript.isWithPlayer;
 
         //Mov
-        if (!together)
-        {
-            maxSpeedX = 4.0f;
-            maxSpeedY = 31.5f;
-            movementMagnitude = 24.0f;
-            jumpMagnitude = 54.1f;
-        }
-        else
-        {
-            maxSpeedX = 3.0f;
-            maxSpeedY = 31.5f;
-            movementMagnitude = 16.0f;
-            jumpMagnitude = 0.0f;
-        }
+        //if (!together)
+        //{
+        //    maxSpeedX = 4.0f;
+        //    maxSpeedY = 31.5f;
+        //    movementMagnitude = 24.0f;
+        //    jumpMagnitude = 54.1f;
+        //}
+        //else
+        //{
+        //    maxSpeedX = 3.0f;
+        //    maxSpeedY = 31.5f;
+        //    movementMagnitude = 16.0f;
+        //    jumpMagnitude = 0.0f;
+        //}
 
         //Movimiento
         grounded = Physics2D.Raycast(rayOriginTransform.position, Vector2.down, 0.2f);
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A))
+        {
+            A_Up = false;
+            D_Up = false;
+            horizontal = 0.0f;
+        }
+        else if (Input.GetKey(KeyCode.W))
         {
             
         }
@@ -68,11 +92,13 @@ public class Mov : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.A))
         {
+            A_Up = false;
             horizontal = -1.0f;
             Flip();
         }
         else if (Input.GetKey(KeyCode.D))
         {
+            D_Up = false;
             horizontal = 1.0f;
             Flip();
         }
@@ -81,12 +107,81 @@ public class Mov : MonoBehaviour
             horizontal = 0.0f;
         }
 
-        //Salto
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.Space))
+        //Friccion
+        if (Input.GetKeyUp(KeyCode.A))
         {
-            jump();
+            A_Up = true;
+            tiempoA_UP = 0.2f;
         }
-        
+
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            D_Up = true;
+            tiempoD_UP = 0.2f;
+        }
+
+
+        //------------------Rozamiento
+        if(tiempoA_UP >= 0)
+        {
+            tiempoA_UP -= Time.deltaTime;
+        }
+
+        if (tiempoD_UP >= 0)
+        {
+            tiempoD_UP -= Time.deltaTime;
+        }
+
+
+        if (D_Up && A_Up)
+        {
+            if(rb.drag < 8)
+                rb.drag += 1f;
+        }
+        else if(!D_Up && tiempoA_UP > 0) //Estabas yendo hacia la izquierda y justo has cambiado de direccion
+        {
+            if (rb.drag < 8)
+                rb.drag += 1.8f;
+        }
+        else if (!A_Up && tiempoD_UP > 0) //Estabas yendo hacia la derecha y justo has cambiado de direccion
+        {
+            if (rb.drag < 8)
+                rb.drag += 1.8f;
+        }
+        else
+        {
+            rb.drag = inicialDrag;
+        }
+
+
+
+
+        //------------------Coyotetime
+        if(grounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+
+
+        //-----------------------Salto
+        if (Input.GetKey(KeyCode.Space))
+        {
+            A_Up = false;
+            D_Up = false;
+            saltar = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            BottonJump();
+            A_Up = true;
+            D_Up = true;
+        }
+
 
         rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
 
@@ -102,6 +197,26 @@ public class Mov : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        if(saltar && botonSaltoArriba && coyoteTimeCounter > 0f)
+        {
+            jump();
+        }
+
+        if(rb.velocity.y < 0 && coyoteTimeCounter < 0f)
+        {
+            rb.gravityScale = escalarGravedad * multiplicadorGravedad;
+
+            coyoteTimeCounter = 0f;
+        }
+        else
+        {
+            rb.gravityScale = escalarGravedad;
+        }
+        saltar = false;
+    }
+
     public void recoil()
     {
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -113,17 +228,22 @@ public class Mov : MonoBehaviour
         rb.AddForce(xyVector * -4000.0f);
     }
 
+    void BottonJump()
+    {
+        if(rb.velocity.y > 0)
+        {
+            rb.AddForce(Vector2.down * rb.velocity.y * (1 - multiplicadorCancelarSalto), ForceMode2D.Impulse);
+        }
+        botonSaltoArriba = true;
+        saltar = false;
+    }
+
     void jump()
     {
-        if (!grounded)
-        {
-            return;
-        }
-        else
-        {
-            rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
-        }
-
+        rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
+        grounded = false;
+        saltar = false;
+        botonSaltoArriba = false;
     }
 
     private void Flip()
@@ -131,7 +251,6 @@ public class Mov : MonoBehaviour
 
         if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
-
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
