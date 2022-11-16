@@ -138,12 +138,12 @@ public class Mov : MonoBehaviour
             if(rb.drag < 8)
                 rb.drag += 1f;
         }
-        else if(!D_Up && tiempoA_UP > 0) //Estabas yendo hacia la izquierda y justo has cambiado de direccion
+        else if(!D_Up && tiempoA_UP > 0 && grounded) //Estabas yendo hacia la izquierda y justo has cambiado de direccion
         {
             if (rb.drag < 8)
                 rb.drag += 1.8f;
         }
-        else if (!A_Up && tiempoD_UP > 0) //Estabas yendo hacia la derecha y justo has cambiado de direccion
+        else if (!A_Up && tiempoD_UP > 0 && grounded) //Estabas yendo hacia la derecha y justo has cambiado de direccion
         {
             if (rb.drag < 8)
                 rb.drag += 1.8f;
