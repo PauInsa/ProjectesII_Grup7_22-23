@@ -4,31 +4,43 @@ using UnityEngine;
 
 public class Mov : MonoBehaviour
 {
+    [Header ("Movimiento")]
     float horizontal;
     float vertical;
     public float maxSpeedX;
     public float maxSpeedY;
-    bool grounded;
+    private bool grounded;
     public float movementMagnitude;
+
+    [Header("Salto")]
     public float jumpMagnitude;
     bool isFacingRight = true;
 
+    [Header ("Drag")]
     public float inicialDrag;
-
     public float multiplicadorCancelarSalto;
     public float multiplicadorGravedad;
     private float escalarGravedad;
     private bool botonSaltoArriba = true;
     private bool saltar;
 
+    private bool A_Up;
+    private bool D_Up;
+
+    private float tiempoA_UP = 0.2f;
+    private float tiempoD_UP = 0.2f;
+
+    [Header ("CoyoteTime")]
     public float coyoteTime;
     private float coyoteTimeCounter;
 
 
     public Pistola pistolaScript;
 
+    [Header ("Audio")]
     public AudioSource fireSound;
 
+    [Header ("Asociaciones")]
     public Transform personaje;
 
     public Transform rayOriginTransform;
@@ -37,11 +49,13 @@ public class Mov : MonoBehaviour
 
     public bool together = false;
 
-    private bool A_Up;
-    private bool D_Up;
-
-    private float tiempoA_UP = 0.2f;
-    private float tiempoD_UP = 0.2f;
+    [Header ("Salto en  la pared")]
+    public Transform controladorPared;
+    public Vector3 BoxSize;
+    private bool wall;
+    private bool deslizando;
+    public float deslizVelocity;
+    private LayerMask pared;
 
     // Start is called before the first frame update
     void Start()
@@ -194,11 +208,26 @@ public class Mov : MonoBehaviour
             rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
         }
 
-
+        //-----------deslizarse por la pared
+        if (!grounded && wall)
+        {
+            deslizando = true;
+        }
+        else
+            deslizando = false;
     }
 
     private void FixedUpdate()
     {
+        wall = Physics2D.OverlapBox(controladorPared.position, BoxSize, 0f, pared);
+        
+
+        if (deslizando)
+        {
+            //rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -deslizVelocity, float.MaxValue));
+            rb.drag += 5f;
+        }
+
         if(saltar && botonSaltoArriba && coyoteTimeCounter > 0f)
         {
             jump();
@@ -256,5 +285,10 @@ public class Mov : MonoBehaviour
             localScale.x *= -1f;
             transform.localScale = localScale;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(controladorPared.position, BoxSize);
     }
 }
