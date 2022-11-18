@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Mov : MonoBehaviour
 {
-    [Header ("Movimiento")]
-    float horizontal;
-    float vertical;
+
+    public ParticleSystem runDust;
+
+    [Header("Animator")]
+    public Animator animator;
+
+    [Header("Movimiento")]
+    private float horizontal;
+    private float vertical;
     public float maxSpeedX;
     public float maxSpeedY;
     private bool grounded;
@@ -70,6 +76,9 @@ public class Mov : MonoBehaviour
     {
         //Comprobar si estan unidos
         together = pistolaScript.isWithPlayer;
+
+        //animacion
+        animator.SetFloat("speed", Mathf.Abs(horizontal));
 
         //Mov
         //if (!together)
@@ -174,10 +183,12 @@ public class Mov : MonoBehaviour
         if(grounded)
         {
             coyoteTimeCounter = coyoteTime;
+            animator.SetBool("isJumping", false);
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
+            animator.SetBool("isJumping", true);
         }
 
 
@@ -269,6 +280,7 @@ public class Mov : MonoBehaviour
 
     void jump()
     {
+        CreateDust();
         rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
         grounded = false;
         saltar = false;
@@ -284,7 +296,17 @@ public class Mov : MonoBehaviour
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
+            if (grounded)
+            {
+                CreateDust();
+            }
+            
         }
+    }
+
+    void CreateDust()
+    {
+        runDust.Play();
     }
 
     private void OnDrawGizmos()
