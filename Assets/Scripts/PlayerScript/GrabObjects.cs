@@ -48,8 +48,8 @@ public class GrabObjects : MonoBehaviour
             //Vector2 xyvector = new Vector2(PlayerAimDirection.localScale.x, PlayerAimDirection.localScale.y);
             //xyvector.Normalize();
             //gun.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
-            Throw();
             gun.transform.SetParent(null);
+            Throw();
         }
         //Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
     }

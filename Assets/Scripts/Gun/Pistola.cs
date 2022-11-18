@@ -6,7 +6,6 @@ public class Pistola : MonoBehaviour
 {
     public Transform gunHolder;
     public SpriteRenderer gunRender;
-    public Collider2D pistolCollider;
     public Transform gun;
 
     Vector2 direction;
@@ -26,8 +25,6 @@ public class Pistola : MonoBehaviour
 
         if (isWithPlayer)
         {
-            pistolCollider.enabled = false;
-
             //Position respecto Holder
             Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gunHolder.position;
             vectorPjMouse.Normalize();
@@ -43,9 +40,5 @@ public class Pistola : MonoBehaviour
             else
                 gunRender.flipY = true;
         }
-        else
-            pistolCollider.enabled = true;
-
-        
     }
 }

@@ -158,10 +158,10 @@ public class Mov : MonoBehaviour
 
         if (D_Up && A_Up)
         {
-            if(rb.drag < 8)
+            if (rb.drag < 8)
                 rb.drag += 1f;
         }
-        else if(!D_Up && tiempoA_UP > 0 && grounded) //Estabas yendo hacia la izquierda y justo has cambiado de direccion
+        else if (!D_Up && tiempoA_UP > 0 && grounded) //Estabas yendo hacia la izquierda y justo has cambiado de direccion
         {
             if (rb.drag < 8)
                 rb.drag += 1.8f;
@@ -202,7 +202,7 @@ public class Mov : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            BottonJump();
+            ButtonJump();
             A_Up = true;
             D_Up = true;
         }
@@ -268,7 +268,7 @@ public class Mov : MonoBehaviour
         rb.AddForce(xyVector * -4000.0f);
     }
 
-    void BottonJump()
+    void ButtonJump()
     {
         if(rb.velocity.y > 0)
         {

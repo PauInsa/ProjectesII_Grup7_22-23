@@ -189,7 +189,7 @@ MonoBehaviour:
   jumpMagnitude: 16.19
   inicialDrag: 0.54
   multiplicadorCancelarSalto: 0
-  multiplicadorGravedad: 3.54
+  multiplicadorGravedad: 9
   coyoteTime: 0.18
   pistolaScript: {fileID: 1348949531}
   fireSound: {fileID: 203465892}
@@ -5566,8 +5566,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565839108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.29, y: -0.4839, z: 0}
-  m_LocalScale: {x: -0.6331992, y: 5.455437, z: 1}
+  m_LocalPosition: {x: 8.46, y: 6.2, z: 0}
+  m_LocalScale: {x: -0.91902536, y: 19.08039, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -6063,7 +6063,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967921524}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.75, y: 0, z: -10}
+  m_LocalPosition: {x: -0.82, y: -0.73, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6725,7 +6725,6 @@ GameObject:
   - component: {fileID: 1348949529}
   - component: {fileID: 1348949531}
   - component: {fileID: 1348949530}
-  - component: {fileID: 1348949532}
   m_Layer: 8
   m_Name: BananaGun
   m_TagString: Untagged
@@ -6965,19 +6964,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63b1e1a88bd8fcc4e834b37bbb40ef15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amo_text: {fileID: 1464936655}
   movScript: {fileID: 203465887}
   gun: {fileID: 1348949524}
-  gunRender: {fileID: 1348949523}
-  shootPoint: {fileID: 1286751377}
   rb: {fileID: 1348949522}
   fireSound: {fileID: 1348949529}
-  reloadSound: {fileID: 1348949532}
+  shootPoint: {fileID: 1286751377}
   bullet: {fileID: 1453848884}
   bulletSpd: 1200
+  gunTorque: 10
+  recoilForce: -2000
   fireRate: 2
-  reloadTime: 2
-  ammo: 0
 --- !u!114 &1348949531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6991,104 +6987,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunHolder: {fileID: 1487584932}
-  pistolCollider: {fileID: 1348949527}
+  gunRender: {fileID: 1348949523}
+  gun: {fileID: 1348949524}
   isWithPlayer: 0
---- !u!82 &1348949532
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348949520}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3ae35359513379144865b30f3e3db039, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1001 &1389655421
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12631,8 +12532,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064715288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.6175, y: -0.4839, z: 0}
-  m_LocalScale: {x: -0.6331992, y: 5.455437, z: 1}
+  m_LocalPosition: {x: -8.7842, y: 4.3992, z: 0}
+  m_LocalScale: {x: -0.96670526, y: 15.221761, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
