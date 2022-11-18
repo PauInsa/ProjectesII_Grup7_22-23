@@ -6,100 +6,52 @@ using TMPro;
 
 public class Shoot : MonoBehaviour
 {
-    public TextMeshProUGUI amo_text;
-
     public Mov movScript;
 
     public Transform gun;
-    public SpriteRenderer gunRender;
-    Vector2 direction;
+    public Rigidbody2D rb;
+
+    public AudioSource fireSound;
 
     public Transform shootPoint;
-    public Rigidbody2D rb;
-    public AudioSource fireSound, reloadSound;
-
     public GameObject bullet;
     public float bulletSpd;
+
+    public float gunTorque;
+    public float recoilForce;
     public float fireRate;
-    public float reloadTime;
     float deltaTimeFire;
-
-    public int ammo;
-
-    bool reloading;
-    float deltaTimeReload;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        ammo = 10;
-        reloading = false;
+     
     }
 
     // Update is called once per frame
     void Update()
     {
-        amo_text.text = "Ammo: " + ammo;
-
-        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        direction = mouseWorldPosition - (Vector2)gun.position;
-        gun.transform.right = direction;
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time > deltaTimeFire)
         {
-            //Shoot
-            if (ammo > 0 && reloading == false)
-            {
-                if (Time.time > deltaTimeFire)
-                {
-                    recoil();
-                    if (movScript.together == true)
-                        movScript.recoil();
+            if (movScript.together == true)
+                movScript.recoil();
+            else
+                recoil();
 
-                    deltaTimeFire = Time.time + 1 / fireRate;
-                    GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
-                    goBullet.transform.right = direction;
-                    goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
+            deltaTimeFire = Time.time + 1 / fireRate;
+            GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
+            goBullet.transform.right = gun.transform.right;
+            goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
 
-                    ammo--;
-                }
-            }
-        }
-        else if (Input.GetMouseButtonDown(1))
-            reload();
-
-        //Sprite rotation
-        if (mouseWorldPosition.x >= gun.position.x)
-            gunRender.flipY = false;
-        else
-            gunRender.flipY = true;
-
-        //Reload
-        if (reloading == true)
-        {
-            reloadSound.Play();
-            if (Time.time > reloadTime + deltaTimeReload)
-            {
-                ammo = 10;
-                reloading = false;
-            }
+            fireSound.Play();
         }
     }
     void recoil()
     {
-        fireSound.Play();
-        Vector2 xyVector = new Vector2(direction.x, direction.y);
+        Vector2 xyVector = new Vector2(gun.transform.right.x, gun.transform.right.y);
         xyVector.Normalize();
-        rb.AddForce(xyVector * -1500.0f);
-    }
-    void reload()
-    {
-        if (reloading == false && ammo !=10)
-        {
-            reloading = true;
-            deltaTimeReload = Time.time;
-        }
+        rb.AddForce(xyVector * recoilForce);
+        rb.AddTorque(gunTorque, ForceMode2D.Impulse);
     }
 }
 
