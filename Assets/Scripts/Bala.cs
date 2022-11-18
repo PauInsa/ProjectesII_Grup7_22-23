@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bala : MonoBehaviour
 {
+    public GameObject BalaFather;
     public GameObject player;
     public GameObject enemyStalker;
     public GameObject enemySniper;
@@ -12,17 +13,22 @@ public class Bala : MonoBehaviour
     {
         if (collision.CompareTag("Wall"))
         {
-            Destroy(gameObject);
+            Destroy(BalaFather);
+        }
+
+        if (collision.CompareTag("Ground"))
+        {
+            Destroy(BalaFather);
         }
 
         if (collision.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            Destroy(BalaFather);
         }
 
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(BalaFather);
         }
     }
 
