@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4b2a27468642be94e8b18b1a61663ff0
+guid: a5aecabcbe310d2489ab925d4dd70fb4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 3, y: 0, z: 12, w: 8}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -104,22 +104,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: johnny pixel_0
+      name: player boceto_0
       rect:
         serializedVersion: 2
-        x: 3
+        x: 1
         y: 0
-        width: 17
-        height: 24
+        width: 22
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6415bc23a5be134d8ab91b6acd7795a
-      internalID: 2040067113
+      spriteID: 3b2a151a74d5ad043b0f2c9ba6beb5c2
+      internalID: 1714981165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player boceto_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 0
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a36693714f4ecc242bc7ed3121efa940
+      internalID: -1756136226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player boceto_2
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4a5610195db2b24089b9d450c59c31d
+      internalID: -213924467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player boceto_3
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 22
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e3eb8ebb35f343409e4f0095b4db9ac
+      internalID: 1169983973
       vertices: []
       indices: 
       edges: []
@@ -128,14 +191,17 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      johnny pixel_0: 2040067113
+      player boceto_2: -213924467
+      player boceto_3: 1169983973
+      player boceto_0: 1714981165
+      player boceto_1: -1756136226
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
