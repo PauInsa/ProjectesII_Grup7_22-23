@@ -80,6 +80,13 @@ public class Mov : MonoBehaviour
         //animacion
         animator.SetFloat("speed", Mathf.Abs(horizontal));
 
+        if (together == true)
+        {
+            animator.SetBool("WithWeapon", true);
+        }
+        else
+            animator.SetBool("WithWeapon", false);
+
         //Mov
         //if (!together)
         //{

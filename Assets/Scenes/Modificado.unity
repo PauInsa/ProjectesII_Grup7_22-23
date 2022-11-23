@@ -11861,6 +11861,7 @@ MonoBehaviour:
   gunHolder: {fileID: 1487584932}
   gunRender: {fileID: 1348949523}
   gun: {fileID: 1348949524}
+  animator: {fileID: 1348949532}
   isWithPlayer: 0
 --- !u!95 &1348949532
 Animator:
