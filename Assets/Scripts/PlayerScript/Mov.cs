@@ -7,6 +7,15 @@ public class Mov : MonoBehaviour
 
     public ParticleSystem runDust;
 
+    [Header("Video")]
+    public float MoveSpeed;
+    public float acceleration;
+    public float decceleration;
+    public float velPower;
+    public float FrictionAmount;
+    private bool isJumping = false;
+    public float RecoilForce;
+
     [Header("Animator")]
     public Animator animator;
 
@@ -124,12 +133,14 @@ public class Mov : MonoBehaviour
         {
             A_Up = false;
             horizontal = -1.0f;
+            Run();
             Flip();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             D_Up = false;
             horizontal = 1.0f;
+            Run();
             Flip();
         }
         else
@@ -215,7 +226,7 @@ public class Mov : MonoBehaviour
         }
 
 
-        rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
+        /*rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
 
         if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
             rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
@@ -224,7 +235,7 @@ public class Mov : MonoBehaviour
         else if(Mathf.Abs(rb.velocity.y) > maxSpeedY && Mathf.Abs(rb.velocity.x) > maxSpeedX)
         {
             rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
-        }
+        }*/
 
         //-----------deslizarse por la pared
         if (!grounded && wall)
@@ -272,12 +283,12 @@ public class Mov : MonoBehaviour
 
         xyVector.Normalize();
 
-        rb.AddForce(xyVector * -4000.0f);
+        rb.AddForce(xyVector * -RecoilForce);
     }
 
     void ButtonJump()
     {
-        if(rb.velocity.y > 0)
+        if(rb.velocity.y > 0 && isJumping)
         {
             rb.AddForce(Vector2.down * rb.velocity.y * (1 - multiplicadorCancelarSalto), ForceMode2D.Impulse);
         }
@@ -291,6 +302,7 @@ public class Mov : MonoBehaviour
         rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
         grounded = false;
         saltar = false;
+        isJumping = true;
         botonSaltoArriba = false;
     }
 
@@ -309,6 +321,19 @@ public class Mov : MonoBehaviour
             }
             
         }
+    }
+
+    private void Run()
+    {
+        float targetSpeed = horizontal * MoveSpeed;
+
+        float speedDif = targetSpeed - rb.velocity.x;
+
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+
+        rb.AddForce(movement * Vector2.right);
     }
 
     void CreateDust()
