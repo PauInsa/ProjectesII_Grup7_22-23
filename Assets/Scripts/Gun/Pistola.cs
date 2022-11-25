@@ -9,6 +9,7 @@ public class Pistola : MonoBehaviour
     public Transform gun;
 
     public Collider2D gunCollider;
+    public Rigidbody2D rb;
 
     public Animator animator;
 
@@ -29,9 +30,7 @@ public class Pistola : MonoBehaviour
 
         if (isWithPlayer)
         {
-            gunCollider.enabled = false;
-            //Animacion
-            animator.SetBool("WithPlayer", true);
+
             //Position respecto Holder
             Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gunHolder.position;
             vectorPjMouse.Normalize();
@@ -47,12 +46,24 @@ public class Pistola : MonoBehaviour
             else
                 gunRender.flipY = true;
         }
-        else
-        {
-            gunCollider.enabled = true;
-            animator.SetBool("WithPlayer", false);
-        }
-            
+    }
 
+    public void Grab()
+    {
+        rb.isKinematic = true;
+        gunCollider.enabled = false;
+        isWithPlayer = true;
+        animator.SetBool("WithPlayer", true);
+    }
+
+    public void Throw(float forceThrow)
+    {
+        rb.isKinematic = false;
+        gunCollider.enabled = true;
+        isWithPlayer = false;
+        animator.SetBool("WithPlayer", false);
+
+        //Add force to throw the gun
+        GetComponent<Rigidbody2D>().AddForce(transform.right * forceThrow, ForceMode2D.Impulse);
     }
 }

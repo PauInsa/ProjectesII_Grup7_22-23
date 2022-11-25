@@ -45,12 +45,19 @@ public class Shoot : MonoBehaviour
 
             fireSound.Play();
         }
+        if (Input.GetMouseButtonDown(1))
+            FlipGun();
     }
     void recoil()
     {
         Vector2 xyVector = new Vector2(gun.transform.right.x, gun.transform.right.y);
         xyVector.Normalize();
         rb.AddForce(xyVector * recoilForce);
+        rb.AddTorque(gunTorque, ForceMode2D.Impulse);
+    }
+    void FlipGun()
+    {
+        rb.AddForce(Vector2.up * 30, ForceMode2D.Impulse);
         rb.AddTorque(gunTorque, ForceMode2D.Impulse);
     }
 }

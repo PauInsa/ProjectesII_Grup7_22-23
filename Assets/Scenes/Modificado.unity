@@ -188,7 +188,7 @@ MonoBehaviour:
   decceleration: 7
   velPower: 0.9
   FrictionAmount: 0.2
-  RecoilForce: 100
+  RecoilForce: 2000
   animator: {fileID: 203465895}
   maxSpeedX: 5
   maxSpeedY: 4.4
@@ -299,8 +299,11 @@ MonoBehaviour:
   rayDistance: 0.5
   PlayerAimDirection: {fileID: 203465889}
   shotPoint: {fileID: 1780909028}
-  gun: {fileID: 1348949520}
-  forceThrow: 10
+  forceThrow: 50
+  grabbableObjectsLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  grabThreshold: 0.2
 --- !u!114 &203465891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +557,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203465884}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db9cf7f763561c84faa0abffb94af092, type: 3}
   m_Name: 
@@ -575,7 +578,7 @@ MonoBehaviour:
   _fallClamp: -40
   _minFallSpeed: 80
   _maxFallSpeed: 120
-  _jumpHeight: 30
+  _jumpHeight: 10
   _jumpApexThreshold: 10
   _coyoteTimeThreshold: 0.1
   _jumpBuffer: 0.1
@@ -11600,7 +11603,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286751377}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11638,7 +11641,7 @@ GameObject:
   - component: {fileID: 1348949531}
   - component: {fileID: 1348949530}
   - component: {fileID: 1348949532}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BananaGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11659,10 +11662,10 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3.54
   m_LinearDrag: 0
-  m_AngularDrag: 60.89
+  m_AngularDrag: 2.5
   m_GravityScale: 1.69
   m_Material: {fileID: 6200000, guid: a3fc73a4eb061eb4a8af19afdbadf01b, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -11898,7 +11901,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1286751377}
   bullet: {fileID: 1453848884}
   bulletSpd: 1200
-  gunTorque: 20
+  gunTorque: 2
   recoilForce: -2000
   fireRate: 2
 --- !u!114 &1348949531
@@ -11917,6 +11920,7 @@ MonoBehaviour:
   gunRender: {fileID: 1348949523}
   gun: {fileID: 1348949524}
   gunCollider: {fileID: 1348949527}
+  rb: {fileID: 1348949522}
   animator: {fileID: 1348949532}
   isWithPlayer: 0
 --- !u!95 &1348949532
@@ -11949,6 +11953,10 @@ PrefabInstance:
     - target: {fileID: 1992596605277683057, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
       propertyPath: m_Name
       value: Bullet Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992596605277683057, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1992596605277683057, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
       propertyPath: m_TagString
