@@ -220,7 +220,7 @@ public class Mov : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            ButtonJump();
+            //ButtonJump();
             A_Up = true;
             D_Up = true;
         }
@@ -259,7 +259,7 @@ public class Mov : MonoBehaviour
 
         if(saltar && botonSaltoArriba && coyoteTimeCounter > 0f)
         {
-            jump();
+            //jump();
         }
 
         if(rb.velocity.y < 0 && coyoteTimeCounter < 0f)
