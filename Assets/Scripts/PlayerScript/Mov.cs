@@ -133,14 +133,14 @@ public class Mov : MonoBehaviour
         {
             A_Up = false;
             horizontal = -1.0f;
-            Run();
+            //Run();
             Flip();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             D_Up = false;
             horizontal = 1.0f;
-            Run();
+            //Run();
             Flip();
         }
         else
@@ -226,7 +226,7 @@ public class Mov : MonoBehaviour
         }
 
 
-        /*rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
+        rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
 
         if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
             rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
@@ -235,7 +235,7 @@ public class Mov : MonoBehaviour
         else if(Mathf.Abs(rb.velocity.y) > maxSpeedY && Mathf.Abs(rb.velocity.x) > maxSpeedX)
         {
             rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
-        }*/
+        }
 
         //-----------deslizarse por la pared
         if (!grounded && wall)
@@ -288,7 +288,7 @@ public class Mov : MonoBehaviour
 
     void ButtonJump()
     {
-        if(rb.velocity.y > 0 && isJumping)
+        if(rb.velocity.y > 0)
         {
             rb.AddForce(Vector2.down * rb.velocity.y * (1 - multiplicadorCancelarSalto), ForceMode2D.Impulse);
         }
@@ -302,7 +302,6 @@ public class Mov : MonoBehaviour
         rb.AddForce(Vector2.up * jumpMagnitude, ForceMode2D.Impulse);
         grounded = false;
         saltar = false;
-        isJumping = true;
         botonSaltoArriba = false;
     }
 
@@ -323,7 +322,7 @@ public class Mov : MonoBehaviour
         }
     }
 
-    private void Run()
+    /*private void Run()
     {
         float targetSpeed = horizontal * MoveSpeed;
 
@@ -334,7 +333,7 @@ public class Mov : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
 
         rb.AddForce(movement * Vector2.right);
-    }
+    }*/
 
     void CreateDust()
     {

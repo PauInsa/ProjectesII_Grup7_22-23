@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 203465889}
   - component: {fileID: 203465888}
+  - component: {fileID: 203465896}
   - component: {fileID: 203465887}
   - component: {fileID: 203465885}
   - component: {fileID: 203465890}
@@ -192,7 +193,7 @@ MonoBehaviour:
   maxSpeedX: 5
   maxSpeedY: 4.4
   movementMagnitude: 2
-  jumpMagnitude: 16.19
+  jumpMagnitude: 50
   inicialDrag: 0.54
   multiplicadorCancelarSalto: 0
   multiplicadorGravedad: 9
@@ -546,6 +547,40 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &203465896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203465884}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9cf7f763561c84faa0abffb94af092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  _detectorCount: 3
+  _detectionRayLength: 1
+  _rayBuffer: 0.1
+  _acceleration: 90
+  _moveClamp: 13
+  _deAcceleration: 60
+  _apexBonus: 2
+  _fallClamp: -40
+  _minFallSpeed: 80
+  _maxFallSpeed: 120
+  _jumpHeight: 30
+  _jumpApexThreshold: 10
+  _coyoteTimeThreshold: 0.1
+  _jumpBuffer: 0.1
+  _jumpEndEarlyGravityModifier: 3
+  _freeColliderIterations: 10
 --- !u!1 &222881413
 GameObject:
   m_ObjectHideFlags: 0
