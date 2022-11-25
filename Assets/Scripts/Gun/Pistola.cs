@@ -8,6 +8,8 @@ public class Pistola : MonoBehaviour
     public SpriteRenderer gunRender;
     public Transform gun;
 
+    public Animator animator;
+
     Vector2 direction;
 
     public bool isWithPlayer;
@@ -25,6 +27,8 @@ public class Pistola : MonoBehaviour
 
         if (isWithPlayer)
         {
+            //Animacion
+            animator.SetBool("WithPlayer", true);
             //Position respecto Holder
             Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gunHolder.position;
             vectorPjMouse.Normalize();
@@ -40,5 +44,8 @@ public class Pistola : MonoBehaviour
             else
                 gunRender.flipY = true;
         }
+        else
+            animator.SetBool("WithPlayer", false);
+
     }
 }

@@ -7,6 +7,15 @@ public class Mov : MonoBehaviour
 
     public ParticleSystem runDust;
 
+    [Header("Video")]
+    public float MoveSpeed;
+    public float acceleration;
+    public float decceleration;
+    public float velPower;
+    public float FrictionAmount;
+    private bool isJumping = false;
+    public float RecoilForce;
+
     [Header("Animator")]
     public Animator animator;
 
@@ -80,6 +89,13 @@ public class Mov : MonoBehaviour
         //animacion
         animator.SetFloat("speed", Mathf.Abs(horizontal));
 
+        if (together == true)
+        {
+            animator.SetBool("WithWeapon", true);
+        }
+        else
+            animator.SetBool("WithWeapon", false);
+
         //Mov
         //if (!together)
         //{
@@ -117,12 +133,14 @@ public class Mov : MonoBehaviour
         {
             A_Up = false;
             horizontal = -1.0f;
+            //Run();
             Flip();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             D_Up = false;
             horizontal = 1.0f;
+            //Run();
             Flip();
         }
         else
@@ -265,7 +283,7 @@ public class Mov : MonoBehaviour
 
         xyVector.Normalize();
 
-        rb.AddForce(xyVector * -4000.0f);
+        rb.AddForce(xyVector * -RecoilForce);
     }
 
     void ButtonJump()
@@ -303,6 +321,19 @@ public class Mov : MonoBehaviour
             
         }
     }
+
+    /*private void Run()
+    {
+        float targetSpeed = horizontal * MoveSpeed;
+
+        float speedDif = targetSpeed - rb.velocity.x;
+
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration : decceleration;
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDif) * accelRate, velPower) * Mathf.Sign(speedDif);
+
+        rb.AddForce(movement * Vector2.right);
+    }*/
 
     void CreateDust()
     {
