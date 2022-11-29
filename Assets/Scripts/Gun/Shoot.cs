@@ -17,6 +17,7 @@ public class Shoot : MonoBehaviour
     public GameObject bullet;
     public float bulletSpd;
 
+    public bool grounded;
     public float gunTorque;
     public float recoilForce;
     public float fireRate;
@@ -31,6 +32,8 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        grounded = Physics2D.Raycast(gun.position, Vector2.down, 0.4f, LayerMask.GetMask("Walls"));
+
         if (Input.GetMouseButtonDown(0) && Time.time > deltaTimeFire)
         {
             if (movScript.together == true)
@@ -45,8 +48,10 @@ public class Shoot : MonoBehaviour
 
             fireSound.Play();
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && grounded == true)
+        {
             FlipGun();
+        }
     }
     void recoil()
     {

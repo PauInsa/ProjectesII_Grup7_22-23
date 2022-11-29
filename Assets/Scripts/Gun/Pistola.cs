@@ -15,6 +15,7 @@ public class Pistola : MonoBehaviour
 
     Vector2 direction;
 
+    public float aimHeight;
     public bool isWithPlayer;
 
     // Start is called before the first frame update
@@ -37,14 +38,17 @@ public class Pistola : MonoBehaviour
             vectorPjMouse *= 0.4f;
             transform.position = (Vector3)vectorPjMouse + gunHolder.position;
 
-            direction = mouseWorldPosition - (Vector2)gun.position;
-            gun.transform.right = direction;
-
             //Sprite rotation
             if (mouseWorldPosition.x >= gun.position.x)
                 gunRender.flipY = false;
             else
                 gunRender.flipY = true;
+        }
+
+        if (!Physics2D.Raycast(gun.position, Vector2.down, aimHeight, LayerMask.GetMask("Walls")) || isWithPlayer == true)
+        {
+            direction = mouseWorldPosition - (Vector2)gun.position;
+            gun.transform.right = direction;
         }
     }
 
