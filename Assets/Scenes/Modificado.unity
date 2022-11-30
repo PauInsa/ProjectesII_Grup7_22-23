@@ -554,7 +554,7 @@ MonoBehaviour:
   _fallClamp: -40
   _minFallSpeed: 20
   _maxFallSpeed: 60
-  _jumpHeight: 12
+  _jumpHeight: 10
   _jumpApexThreshold: 10
   _coyoteTimeThreshold: 0.1
   _jumpBuffer: 0.1
@@ -11637,6 +11637,7 @@ GameObject:
   - component: {fileID: 1348949529}
   - component: {fileID: 1348949531}
   - component: {fileID: 1348949530}
+  - component: {fileID: 1348949533}
   - component: {fileID: 1348949532}
   m_Layer: 8
   m_Name: BananaGun
@@ -11662,7 +11663,7 @@ Rigidbody2D:
   m_AngularDrag: 60.89
   m_GravityScale: 1.69
   m_Material: {fileID: 6200000, guid: a3fc73a4eb061eb4a8af19afdbadf01b, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -11924,6 +11925,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1348949533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348949520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3115fbb0c90ed5d438b27a9191386218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: {fileID: 0}
+  hitPoint: 3
 --- !u!1001 &1389655421
 PrefabInstance:
   m_ObjectHideFlags: 0
