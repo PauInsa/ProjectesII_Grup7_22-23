@@ -12,6 +12,9 @@ public class EnemyShoot : MonoBehaviour
 
     public Transform player_pos;
 
+    //public CircleCollider2D circleCollider2D;
+
+    bool startShooting = false;
 
     public GameObject bullet;
     public float bulletSpd;
@@ -35,15 +38,29 @@ public class EnemyShoot : MonoBehaviour
 
         vectorEnemiePJ.Normalize();
 
-       if (Time.time > deltaTime)
-       {
+        if(startShooting == true)
+        {
+            if (Time.time > deltaTime)
+            {
                 fireSound.Play();
                 deltaTime = Time.time + 1 / fireRate;
                 GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
                 goBullet.transform.right = vectorEnemiePJ;
                 goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
                 Destroy(goBullet, dissapearTime);
-            
+
+            }
         }
+      
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            startShooting = true;
+        }
+        else
+            startShooting = false;
     }
 }

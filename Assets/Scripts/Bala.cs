@@ -17,7 +17,7 @@ public class Bala : MonoBehaviour
 
         if (collision.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
 
         if (collision.CompareTag("Player"))

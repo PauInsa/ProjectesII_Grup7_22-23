@@ -220,22 +220,22 @@ public class Mov : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            ButtonJump();
+            //ButtonJump();
             A_Up = true;
             D_Up = true;
         }
 
 
-        rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
+        //rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
 
-        if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
-            rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
-        else if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
-            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
-        else if(Mathf.Abs(rb.velocity.y) > maxSpeedY && Mathf.Abs(rb.velocity.x) > maxSpeedX)
-        {
-            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
-        }
+        //if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
+        //    rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
+        //else if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
+        //    rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+        //else if(Mathf.Abs(rb.velocity.y) > maxSpeedY && Mathf.Abs(rb.velocity.x) > maxSpeedX)
+        //{
+        //    rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
+        //}
 
         //-----------deslizarse por la pared
         if (!grounded && wall)
@@ -259,7 +259,7 @@ public class Mov : MonoBehaviour
 
         if(saltar && botonSaltoArriba && coyoteTimeCounter > 0f)
         {
-            jump();
+            //jump();
         }
 
         if(rb.velocity.y < 0 && coyoteTimeCounter < 0f)
