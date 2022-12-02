@@ -33,6 +33,8 @@ public class Shoot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Time.time > deltaTimeFire)
         {
+            CinemachineMovimientoCamara.Instance.MoverCamara(2.5f, 2.5f, 0.1f);
+
             if (movScript.together == true)
                 movScript.recoil();
             else
@@ -46,7 +48,7 @@ public class Shoot : MonoBehaviour
             fireSound.Play();
         }
     }
-    void recoil()
+    public void recoil()
     {
         Vector2 xyVector = new Vector2(gun.transform.right.x, gun.transform.right.y);
         xyVector.Normalize();
