@@ -9,6 +9,7 @@ TagManager:
   - Ball
   - BallPlayer
   - Ground
+  - Gun
   layers:
   - Default
   - TransparentFX
@@ -19,9 +20,9 @@ TagManager:
   - Enemy
   - Player
   - Objects
-  - 
-  - 
-  - 
+  - Gun
+  - Bullets
+  - Walls
   - 
   - 
   - 

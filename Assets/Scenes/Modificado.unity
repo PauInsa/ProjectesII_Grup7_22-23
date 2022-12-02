@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &171798858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 171798859}
+  m_Layer: 9
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &171798859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171798858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.32, y: 0.039, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1348949524}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203465884
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +219,7 @@ MonoBehaviour:
   decceleration: 7
   velPower: 0.9
   FrictionAmount: 0.2
-  RecoilForce: 100
+  RecoilForce: 2000
   animator: {fileID: 203465895}
   maxSpeedX: 5
   maxSpeedY: 4.4
@@ -277,8 +308,8 @@ Transform:
   - {fileID: 1487584932}
   - {fileID: 1780909028}
   - {fileID: 1569739680}
-  - {fileID: 2014999027}
   - {fileID: 861130897}
+  - {fileID: 2014999027}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -299,8 +330,11 @@ MonoBehaviour:
   rayDistance: 0.5
   PlayerAimDirection: {fileID: 203465889}
   shotPoint: {fileID: 1780909028}
-  gun: {fileID: 1348949520}
-  forceThrow: 10
+  forceThrow: 50
+  grabbableObjectsLayers:
+    serializedVersion: 2
+    m_Bits: 768
+  grabThreshold: 0.2
 --- !u!114 &203465891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,7 +588,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203465884}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db9cf7f763561c84faa0abffb94af092, type: 3}
   m_Name: 
@@ -564,7 +598,7 @@ MonoBehaviour:
     m_Extent: {x: 0, y: 0, z: 0}
   _groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
   _detectorCount: 3
   _detectionRayLength: 1
   _rayBuffer: 0.1
@@ -575,7 +609,7 @@ MonoBehaviour:
   _fallClamp: -40
   _minFallSpeed: 80
   _maxFallSpeed: 120
-  _jumpHeight: 30
+  _jumpHeight: 10
   _jumpApexThreshold: 10
   _coyoteTimeThreshold: 0.1
   _jumpBuffer: 0.1
@@ -592,7 +626,7 @@ GameObject:
   - component: {fileID: 222881416}
   - component: {fileID: 222881415}
   - component: {fileID: 222881414}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (4)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5515,7 +5549,7 @@ GameObject:
   - component: {fileID: 565839111}
   - component: {fileID: 565839110}
   - component: {fileID: 565839109}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (7)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5777,7 +5811,7 @@ GameObject:
   - component: {fileID: 859892302}
   - component: {fileID: 859892301}
   - component: {fileID: 859892300}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -5948,7 +5982,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 203465889}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &861130898
 ParticleSystemRenderer:
@@ -10798,7 +10832,7 @@ GameObject:
   - component: {fileID: 955582375}
   - component: {fileID: 955582374}
   - component: {fileID: 955582373}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (6)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11238,7 +11272,7 @@ GameObject:
   - component: {fileID: 1064009193}
   - component: {fileID: 1064009192}
   - component: {fileID: 1064009194}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11349,7 +11383,7 @@ GameObject:
   - component: {fileID: 1087528330}
   - component: {fileID: 1087528329}
   - component: {fileID: 1087528328}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (2)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11491,7 +11525,7 @@ GameObject:
   - component: {fileID: 1274301026}
   - component: {fileID: 1274301025}
   - component: {fileID: 1274301024}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (3)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -11600,8 +11634,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1286751377}
-  m_Layer: 8
-  m_Name: GameObject
+  m_Layer: 9
+  m_Name: Raycat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11615,7 +11649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286751376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.202, y: 0.013, z: 0}
+  m_LocalPosition: {x: -0.077, y: 0.035, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11638,9 +11672,9 @@ GameObject:
   - component: {fileID: 1348949531}
   - component: {fileID: 1348949530}
   - component: {fileID: 1348949532}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: BananaGun
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11659,10 +11693,10 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3.54
   m_LinearDrag: 0
-  m_AngularDrag: 60.89
+  m_AngularDrag: 2.5
   m_GravityScale: 1.69
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Material: {fileID: 6200000, guid: a3fc73a4eb061eb4a8af19afdbadf01b, type: 2}
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -11731,6 +11765,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1286751377}
+  - {fileID: 171798859}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11759,16 +11794,30 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.031295568, y: 0.12910295}
-      - {x: -0.172741, y: 0.08946799}
-      - {x: -0.21669483, y: -0.026138544}
-      - {x: -0.19513583, y: -0.14803815}
-      - {x: -0.17338663, y: -0.15315628}
-      - {x: -0.07867265, y: -0.03263235}
-      - {x: 0.039651453, y: 0.0017943382}
-      - {x: 0.17872322, y: 0.02660337}
-      - {x: 0.18858707, y: 0.078554794}
-      - {x: 0.09313615, y: 0.12318492}
+    - - {x: -0.16912797, y: 0.18345928}
+      - {x: -0.21384704, y: 0.18163013}
+      - {x: -0.22903866, y: 0.17294429}
+      - {x: -0.24763405, y: 0.16302276}
+      - {x: -0.30763733, y: 0.16023064}
+      - {x: -0.3108784, y: 0.12156081}
+      - {x: -0.278162, y: 0.10343194}
+      - {x: -0.28219354, y: 0.06260514}
+      - {x: -0.29439187, y: 0.05638814}
+      - {x: -0.33317292, y: -0.06884718}
+      - {x: -0.33490956, y: -0.17133379}
+      - {x: -0.21997792, y: -0.17451048}
+      - {x: -0.19582617, y: -0.078338385}
+      - {x: -0.10331309, y: -0.07893753}
+      - {x: -0.09614432, y: -0.005454302}
+      - {x: 0.016799092, y: -0.0043275356}
+      - {x: 0.016355813, y: 0.011500835}
+      - {x: 0.32820344, y: 0.013013989}
+      - {x: 0.33292663, y: 0.14926314}
+      - {x: 0.28371084, y: 0.18144386}
+      - {x: 0.23170948, y: 0.17912364}
+      - {x: 0.23194695, y: 0.15793872}
+      - {x: 0.10284269, y: 0.1581285}
+      - {x: -0.15923326, y: 0.16201115}
 --- !u!82 &1348949529
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11881,10 +11930,11 @@ MonoBehaviour:
   gun: {fileID: 1348949524}
   rb: {fileID: 1348949522}
   fireSound: {fileID: 1348949529}
-  shootPoint: {fileID: 1286751377}
+  shootPoint: {fileID: 171798859}
   bullet: {fileID: 1453848884}
   bulletSpd: 1200
-  gunTorque: 10
+  grounded: 0
+  gunTorque: 2
   recoilForce: -2000
   fireRate: 2
 --- !u!114 &1348949531
@@ -11902,7 +11952,10 @@ MonoBehaviour:
   gunHolder: {fileID: 1487584932}
   gunRender: {fileID: 1348949523}
   gun: {fileID: 1348949524}
+  gunCollider: {fileID: 1348949527}
+  rb: {fileID: 1348949522}
   animator: {fileID: 1348949532}
+  aimHeight: 1.5
   isWithPlayer: 0
 --- !u!95 &1348949532
 Animator:
@@ -11934,6 +11987,10 @@ PrefabInstance:
     - target: {fileID: 1992596605277683057, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
       propertyPath: m_Name
       value: Bullet Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992596605277683057, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1992596605277683057, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
       propertyPath: m_TagString
@@ -11987,6 +12044,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 203465891}
+    - target: {fileID: 8093639057556762387, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9054296245110143234, guid: 8f28a1a9ff4122c4299350c52a2efb96, type: 3}
       propertyPath: player
       value: 
@@ -12492,12 +12553,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014999026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.151, y: -0.304, z: 0}
+  m_LocalPosition: {x: -0.15100026, y: -0.3039999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 203465889}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &2014999028
 ParticleSystemRenderer:
@@ -17373,7 +17434,7 @@ GameObject:
   - component: {fileID: 2064715291}
   - component: {fileID: 2064715290}
   - component: {fileID: 2064715289}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Square (5)
   m_TagString: Wall
   m_Icon: {fileID: 0}

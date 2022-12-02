@@ -8,10 +8,14 @@ public class Pistola : MonoBehaviour
     public SpriteRenderer gunRender;
     public Transform gun;
 
+    public Collider2D gunCollider;
+    public Rigidbody2D rb;
+
     public Animator animator;
 
     Vector2 direction;
 
+    public float aimHeight;
     public bool isWithPlayer;
 
     // Start is called before the first frame update
@@ -27,16 +31,12 @@ public class Pistola : MonoBehaviour
 
         if (isWithPlayer)
         {
-            //Animacion
-            animator.SetBool("WithPlayer", true);
+
             //Position respecto Holder
             Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gunHolder.position;
             vectorPjMouse.Normalize();
-            vectorPjMouse *= 0.8f;
+            vectorPjMouse *= 0.4f;
             transform.position = (Vector3)vectorPjMouse + gunHolder.position;
-
-            direction = mouseWorldPosition - (Vector2)gun.position;
-            gun.transform.right = direction;
 
             //Sprite rotation
             if (mouseWorldPosition.x >= gun.position.x)
@@ -44,8 +44,30 @@ public class Pistola : MonoBehaviour
             else
                 gunRender.flipY = true;
         }
-        else
-            animator.SetBool("WithPlayer", false);
 
+        if (!Physics2D.Raycast(gun.position, Vector2.down, aimHeight, LayerMask.GetMask("Walls")) || isWithPlayer == true)
+        {
+            direction = mouseWorldPosition - (Vector2)gun.position;
+            gun.transform.right = direction;
+        }
+    }
+
+    public void Grab()
+    {
+        rb.isKinematic = true;
+        gunCollider.enabled = false;
+        isWithPlayer = true;
+        animator.SetBool("WithPlayer", true);
+    }
+
+    public void Throw(float forceThrow)
+    {
+        rb.isKinematic = false;
+        gunCollider.enabled = true;
+        isWithPlayer = false;
+        animator.SetBool("WithPlayer", false);
+
+        //Add force to throw the gun
+        GetComponent<Rigidbody2D>().AddForce(transform.right * forceThrow, ForceMode2D.Impulse);
     }
 }
