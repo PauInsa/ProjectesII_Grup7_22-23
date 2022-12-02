@@ -59,7 +59,7 @@ public class Shoot : MonoBehaviour
     {
         Vector2 xyVector = new Vector2(gun.transform.right.x, gun.transform.right.y);
         xyVector.Normalize();
-        rb.AddForce(xyVector * recoilForce);
+        rb.AddForce(xyVector * recoilForce, ForceMode2D.Impulse);
         rb.AddTorque(gunTorque, ForceMode2D.Impulse);
     }
     void FlipGun()

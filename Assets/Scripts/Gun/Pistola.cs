@@ -15,8 +15,11 @@ public class Pistola : MonoBehaviour
 
     Vector2 direction;
 
+    public float holderDistance;
     public float aimHeight;
     public bool isWithPlayer;
+
+    Vector2 mouseWorldPosition = Vector2.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +30,7 @@ public class Pistola : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (isWithPlayer)
         {
@@ -35,7 +38,7 @@ public class Pistola : MonoBehaviour
             //Position respecto Holder
             Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)gunHolder.position;
             vectorPjMouse.Normalize();
-            vectorPjMouse *= 0.4f;
+            vectorPjMouse *= holderDistance;
             transform.position = (Vector3)vectorPjMouse + gunHolder.position;
 
             //Sprite rotation
@@ -45,10 +48,16 @@ public class Pistola : MonoBehaviour
                 gunRender.flipY = true;
         }
 
+
+    }
+
+    public void FixedUpdate()
+    {
         if (!Physics2D.Raycast(gun.position, Vector2.down, aimHeight, LayerMask.GetMask("Walls")) || isWithPlayer == true)
         {
             direction = mouseWorldPosition - (Vector2)gun.position;
-            gun.transform.right = direction;
+            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, Quaternion.Euler(0,0,90f) * direction);
+            rb.SetRotation(rotation);
         }
     }
 

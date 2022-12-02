@@ -283,7 +283,7 @@ public class Mov : MonoBehaviour
 
         xyVector.Normalize();
 
-        rb.AddForce(xyVector * -RecoilForce);
+        rb.AddForce(xyVector * - RecoilForce, ForceMode2D.Impulse);
     }
 
     void ButtonJump()

@@ -26,11 +26,6 @@ public class ThrowDamage : MonoBehaviour
             enemies.EnemyDamage(hitPoint);
 
             ShootScript.recoil();
-
-            //Vector2 xyVector = new Vector2(gun.transform.right.x, gun.transform.right.y);
-            //xyVector.Normalize();
-            //rb.AddForce(xyVector * recoilforce);
-            //rb.AddTorque(torque, ForceMode2D.Impulse);
         }
     }
 }
