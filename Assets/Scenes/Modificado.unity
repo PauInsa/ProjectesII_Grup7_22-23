@@ -486,7 +486,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203465884}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44e6ca33e5ce6e64cb2015799a118bfd, type: 3}
   m_Name: 
@@ -513,9 +513,6 @@ MonoBehaviour:
   rayOriginTransform: {fileID: 1542492929}
   rb: {fileID: 203465897}
   together: 0
-  controladorPared: {fileID: 1569739680}
-  BoxSize: {x: 0.18, y: 0.61, z: 0}
-  deslizVelocity: 0.75
 --- !u!212 &203465888
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -906,7 +903,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -11510,7 +11507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 967921524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28395653, y: -0.8920431, z: -10}
+  m_LocalPosition: {x: 0.22049165, y: -0.89209175, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12334,7 +12331,7 @@ MonoBehaviour:
   bulletSpd: 1200
   grounded: 0
   gunTorque: 2
-  recoilForce: -10
+  recoilForce: -50
   fireRate: 1000
 --- !u!114 &1348949531
 MonoBehaviour:
@@ -12357,6 +12354,8 @@ MonoBehaviour:
   holderDistance: 0.7
   aimHeight: 1.5
   isWithPlayer: 0
+  angularDrag: 2.5
+  linearDrag: 2
 --- !u!95 &1348949532
 Animator:
   serializedVersion: 4

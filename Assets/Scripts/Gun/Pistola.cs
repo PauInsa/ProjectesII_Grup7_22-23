@@ -19,6 +19,9 @@ public class Pistola : MonoBehaviour
     public float aimHeight;
     public bool isWithPlayer;
 
+    public float angularDrag;
+    public float linearDrag;
+
     Vector2 mouseWorldPosition = Vector2.zero;
 
     // Start is called before the first frame update
@@ -65,6 +68,8 @@ public class Pistola : MonoBehaviour
     {
         rb.isKinematic = true;
         gunCollider.enabled = false;
+        rb.drag = 0;
+        rb.angularDrag = 0.5f;
         isWithPlayer = true;
         animator.SetBool("WithPlayer", true);
     }
@@ -73,6 +78,8 @@ public class Pistola : MonoBehaviour
     {
         rb.isKinematic = false;
         gunCollider.enabled = true;
+        rb.drag = linearDrag;
+        rb.angularDrag = angularDrag;
         isWithPlayer = false;
         animator.SetBool("WithPlayer", false);
 
