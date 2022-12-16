@@ -5,7 +5,6 @@ using UnityEngine;
 public class Enemys : MonoBehaviour
 {
     public int lifes;
-
     
     void Update()
     {

@@ -64,13 +64,13 @@ public class Mov : MonoBehaviour
 
     public bool together = false;
 
-    [Header ("Salto en  la pared")]
-    public Transform controladorPared;
-    public Vector3 BoxSize;
-    private bool wall;
-    private bool deslizando;
-    public float deslizVelocity;
-    private LayerMask pared;
+    //[Header ("Salto en  la pared")]
+    //public Transform controladorPared;
+    //public Vector3 BoxSize;
+    //private bool wall;
+    //private bool deslizando;
+    //public float deslizVelocity;
+    //private LayerMask pared;
 
     // Start is called before the first frame update
     void Start()
@@ -220,46 +220,46 @@ public class Mov : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            ButtonJump();
+            //ButtonJump();
             A_Up = true;
             D_Up = true;
         }
 
 
-        rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
+        //rb.AddForce(new Vector2(horizontal * movementMagnitude, 0));
 
-        if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
-            rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
-        else if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
-            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
-        else if(Mathf.Abs(rb.velocity.y) > maxSpeedY && Mathf.Abs(rb.velocity.x) > maxSpeedX)
-        {
-            rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
-        }
+        //if (Mathf.Abs(rb.velocity.y) > maxSpeedY)
+        //    rb.velocity = new Vector2(rb.velocity.x, maxSpeedY * Mathf.Sign(rb.velocity.y));
+        //else if (Mathf.Abs(rb.velocity.x) > maxSpeedX)
+        //    rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), rb.velocity.y);
+        //else if(Mathf.Abs(rb.velocity.y) > maxSpeedY && Mathf.Abs(rb.velocity.x) > maxSpeedX)
+        //{
+        //    rb.velocity = new Vector2(maxSpeedX * Mathf.Sign(rb.velocity.x), maxSpeedY * Mathf.Sign(rb.velocity.y));
+        //}
 
         //-----------deslizarse por la pared
-        if (!grounded && wall)
-        {
-            deslizando = true;
-        }
-        else
-            deslizando = false;
+        //if (!grounded && wall)
+        //{
+        //    deslizando = true;
+        //}
+        //else
+        //    deslizando = false;
     }
 
     private void FixedUpdate()
     {
-        wall = Physics2D.OverlapBox(controladorPared.position, BoxSize, 0f, pared);
+        //wall = Physics2D.OverlapBox(controladorPared.position, BoxSize, 0f, pared);
         
 
-        if (deslizando)
-        {
-            //rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -deslizVelocity, float.MaxValue));
-            rb.drag += 5f;
-        }
+        //if (deslizando)
+        //{
+        //    //rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -deslizVelocity, float.MaxValue));
+        //    rb.drag += 5f;
+        //}
 
         if(saltar && botonSaltoArriba && coyoteTimeCounter > 0f)
         {
-            jump();
+            //jump();
         }
 
         if(rb.velocity.y < 0 && coyoteTimeCounter < 0f)
@@ -277,13 +277,10 @@ public class Mov : MonoBehaviour
 
     public void recoil()
     {
-        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)personaje.position;
-        Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
-
+        Vector2 xyVector = new Vector2(pistolaScript.gun.transform.right.x, pistolaScript.gun.transform.right.y);
         xyVector.Normalize();
-
-        rb.AddForce(xyVector * -RecoilForce);
+        
+        rb.AddForce(xyVector * - RecoilForce, ForceMode2D.Impulse);
     }
 
     void ButtonJump()
@@ -340,8 +337,8 @@ public class Mov : MonoBehaviour
         runDust.Play();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(controladorPared.position, BoxSize);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawWireCube(controladorPared.position, BoxSize);
+    //}
 }
