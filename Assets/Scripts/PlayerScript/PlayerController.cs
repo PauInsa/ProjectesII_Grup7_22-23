@@ -325,35 +325,5 @@ namespace TarodevController
         }
 
         #endregion
-
-        public void recoil()
-        {
-            Vector2 xyVector = new Vector2(pistolaScript.gun.transform.right.x, pistolaScript.gun.transform.right.y);
-            xyVector.Normalize();
-
-            rb.AddForce(xyVector * -RecoilForce, ForceMode2D.Impulse);
-        }
-
-        private void Flip()
-        {
-
-            if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
-            {
-                isFacingRight = !isFacingRight;
-                Vector3 localScale = transform.localScale;
-                localScale.x *= -1f;
-                transform.localScale = localScale;
-                if (grounded)
-                {
-                    CreateDust();
-                }
-
-            }
-        }
-
-        void CreateDust()
-        {
-            runDust.Play();
-        }
     }
 }

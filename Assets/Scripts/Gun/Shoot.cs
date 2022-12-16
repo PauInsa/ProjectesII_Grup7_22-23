@@ -6,6 +6,7 @@ using TMPro;
 
 public class Shoot : MonoBehaviour
 {
+    public Pistola pistolaScript;
     public Mov movScript;
 
     public Transform gun;
@@ -38,7 +39,7 @@ public class Shoot : MonoBehaviour
         {
             CinemachineMovimientoCamara.Instance.MoverCamara(2.5f, 2.5f, 0.1f);
 
-            if (movScript.together == true)
+            if (pistolaScript.isWithPlayer == true)
                 movScript.recoil();
             else
                 recoil();

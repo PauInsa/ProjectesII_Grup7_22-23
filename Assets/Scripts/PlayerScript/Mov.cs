@@ -277,9 +277,6 @@ public class Mov : MonoBehaviour
 
     public void recoil()
     {
-        //Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Vector2 vectorPjMouse = mouseWorldPosition - (Vector2)personaje.position;
-        //Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
         Vector2 xyVector = new Vector2(pistolaScript.gun.transform.right.x, pistolaScript.gun.transform.right.y);
         xyVector.Normalize();
         
