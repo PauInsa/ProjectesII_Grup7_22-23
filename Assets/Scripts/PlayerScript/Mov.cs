@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Mov : MonoBehaviour
 {
-
+    [Header ("Particles")]
     public ParticleSystem runDust;
+    
 
     [Header("Video")]
     public float MoveSpeed;

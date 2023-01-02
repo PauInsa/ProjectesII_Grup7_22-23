@@ -4,14 +4,41 @@ using UnityEngine;
 
 public class Enemys : MonoBehaviour
 {
+    [Header("Particles")]
+    public ParticleSystem damageParticle;
+
+    [Header ("Lifes")]
     public int lifes;
 
+    [Header("Color")]
+    public SpriteRenderer renderer;
+    public Color originalColor;
+    public Color damageColor;
+    public float tiempoDaño;
+
+    float timer;
+
+
+    void start()
+    {
+        renderer = GetComponent<SpriteRenderer>();
+    }
     
     void Update()
     {
         if (lifes < 1)
         {
             Destroy(gameObject);
+        }
+
+        //Contador color
+        if(timer <= 0)
+        {
+           renderer.color = originalColor;
+        }
+        else
+        {
+            timer -= Time.deltaTime;
         }
     }
 
@@ -20,6 +47,12 @@ public class Enemys : MonoBehaviour
         if (collision.CompareTag("BallPlayer"))
         {
             EnemyDamage(1);
+
+            damageParticle.Play();
+
+            //Le damos el nuevo color al objeto
+            renderer.color = damageColor;
+            timer = tiempoDaño;
         }
     }
 
@@ -28,4 +61,5 @@ public class Enemys : MonoBehaviour
         //reciveDamage.Play();
         lifes -= damage;
     }
+
 }
