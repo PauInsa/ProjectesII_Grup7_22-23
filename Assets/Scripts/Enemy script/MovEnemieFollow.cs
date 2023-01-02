@@ -33,14 +33,14 @@ public class MovEnemieFollow : MonoBehaviour
         }
 
         //Flip
-        //if(player_pos.position.x > this.transform.position.x)
-        //{
-        //    this.transform.localScale = new Vector2(1, 1);
-        //}
-        //else
-        //{
-        //    this.transform.localScale = new Vector2(-1, 1);
-        //}
+        if(player_pos.position.x > this.transform.position.x)
+        {
+           this.transform.localScale = new Vector2(-1, 1);
+        }
+        else
+        {
+            this.transform.localScale = new Vector2(1, 1);
+        }
 
     }
 }
