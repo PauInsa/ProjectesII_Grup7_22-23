@@ -14,7 +14,7 @@ public class Enemys : MonoBehaviour
     public SpriteRenderer renderer;
     public Color originalColor;
     public Color damageColor;
-    public float tiempoDa�o;
+    public float DamageTime;
 
     float timer;
 
@@ -52,7 +52,7 @@ public class Enemys : MonoBehaviour
 
             //Le damos el nuevo color al objeto
             renderer.color = damageColor;
-            timer = tiempoDa�o;
+            timer = DamageTime;
         }
     }
 
