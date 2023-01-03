@@ -28,7 +28,8 @@ public class Enemys : MonoBehaviour
     {
         if (lifes < 1)
         {
-            Destroy(gameObject);
+            
+            //Destroy(gameObject);
         }
 
         //Contador color

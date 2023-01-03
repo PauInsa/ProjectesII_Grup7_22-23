@@ -23,8 +23,8 @@ TagManager:
   - Gun
   - Bullets
   - Walls
-  - 
-  - 
+  - PlayerZone
+  - GunZone
   - 
   - 
   - 
