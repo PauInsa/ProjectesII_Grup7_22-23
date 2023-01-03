@@ -5,12 +5,19 @@ using UnityEngine;
 public class Enemys : MonoBehaviour
 {
     public int lifes;
-    
+    public Transform enemy;
+
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         if (lifes < 1)
         {
-            Destroy(gameObject);
+            
+            //Destroy(gameObject);
         }
     }
 
