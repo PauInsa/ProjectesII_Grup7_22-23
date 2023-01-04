@@ -1,11 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+using TMPro;
 
 namespace TarodevController
 {
     public class PlayerController : MonoBehaviour, IPlayerController
     {
+        public Transform gun;
+
+        public Shoot shootScript;
+        public Pistola pistolaScript;
         public Vector3 Velocity { get; private set; }
         public FrameInput Input { get; private set; }
         public bool JumpingThisFrame { get; private set; }
@@ -19,6 +26,7 @@ namespace TarodevController
         private bool _active;
         void Awake() => Invoke(nameof(Activate), 0.5f);
         void Activate() => _active = true;
+        private bool recoilON;
 
         private void Update()
         {
@@ -34,6 +42,7 @@ namespace TarodevController
             CalculateJumpApex(); // Affects fall speed, so calculate before gravity
             CalculateGravity(); // Vertical movement
             CalculateJump(); // Possibly overrides vertical
+            CalculateRecoil();
 
             MoveCharacter(); // Actually perform the axis movement
         }
@@ -43,11 +52,13 @@ namespace TarodevController
 
         private void GatherInput()
         {
+            recoilON = UnityEngine.Input.GetButtonDown("Fire1");
+
             Input = new FrameInput
             {
                 JumpDown = UnityEngine.Input.GetButtonDown("Jump"),
                 JumpUp = UnityEngine.Input.GetButtonUp("Jump"),
-                X = UnityEngine.Input.GetAxisRaw("Horizontal")
+                X = UnityEngine.Input.GetAxisRaw("Horizontal"),
             };
             if (Input.JumpDown)
             {
@@ -150,7 +161,6 @@ namespace TarodevController
 
         #endregion
 
-
         #region Walk
 
         [Header("WALKING")][SerializeField] private float _acceleration = 90;
@@ -218,7 +228,7 @@ namespace TarodevController
 
         #region Jump
 
-        [Header("JUMPING")][SerializeField] private float _jumpHeight = 30;
+        [Header("JUMPING")][SerializeField] private float _jumpHeight = 2;
         [SerializeField] private float _jumpApexThreshold = 10f;
         [SerializeField] private float _coyoteTimeThreshold = 0.1f;
         [SerializeField] private float _jumpBuffer = 0.1f;
@@ -263,13 +273,35 @@ namespace TarodevController
             // End the jump early if button released
             if (!_colDown && Input.JumpUp && !_endedJumpEarly && Velocity.y > 0)
             {
-                // _currentVerticalSpeed = 0;
+                //_currentVerticalSpeed = 0;
                 _endedJumpEarly = true;
             }
 
             if (_colUp)
             {
                 if (_currentVerticalSpeed > 0) _currentVerticalSpeed = 0;
+            }
+        }
+
+        #endregion
+
+        #region Recoil
+
+        [Header("RECOIL")]
+        [SerializeField] private float _recoilForce = 2;
+        [SerializeField] private float _veticalProportion = 1.2f;
+        private void CalculateRecoil()
+        {
+            if (recoilON && pistolaScript.isWithPlayer == true)
+            {
+                shootScript.shoot();
+                if (shootScript.ableToShoot == true)
+                {
+                    Vector2 xyVector = new Vector2(-gun.transform.right.x, -gun.transform.right.y);
+                    xyVector.Normalize();
+                    _currentVerticalSpeed = xyVector.y * _recoilForce * _veticalProportion;
+                    _currentHorizontalSpeed = xyVector.x * _recoilForce;
+                }
             }
         }
 

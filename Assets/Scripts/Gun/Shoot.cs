@@ -24,10 +24,12 @@ public class Shoot : MonoBehaviour
     public float fireRate;
     float deltaTimeFire;
 
+    public bool ableToShoot;
+
     // Start is called before the first frame update
     void Start()
     {
-     
+        ableToShoot = false;
     }
 
     // Update is called once per frame
@@ -35,26 +37,36 @@ public class Shoot : MonoBehaviour
     {
         grounded = Physics2D.Raycast(gun.position, Vector2.down, 0.4f, LayerMask.GetMask("Walls"));
 
-        if (Input.GetMouseButtonDown(0) && Time.time > deltaTimeFire)
+        if (Input.GetMouseButtonDown(0))
         {
-            CinemachineMovimientoCamara.Instance.MoverCamara(2.5f, 2.5f, 0.1f);
+            shoot();
+        }
+        else if (Input.GetMouseButtonDown(1) && grounded == true)
+        {
+            FlipGun();
+        }
+    }
 
-            if (pistolaScript.isWithPlayer == true)
-                movScript.recoil();
-            else
-                recoil();
+    public void shoot()
+    {
+        if (Time.time > deltaTimeFire)
+        {
+            ableToShoot = true;
+
+            CinemachineMovimientoCamara.Instance.MoverCamara(2.5f, 2.5f, 0.1f);
 
             deltaTimeFire = Time.time + 1 / fireRate;
             GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
             goBullet.transform.right = gun.transform.right;
             goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
 
+            if (pistolaScript.isWithPlayer == false)
+                recoil();
+
             fireSound.Play();
         }
-        if (Input.GetMouseButtonDown(1) && grounded == true)
-        {
-            FlipGun();
-        }
+        else
+            ableToShoot = false;
     }
     public void recoil()
     {

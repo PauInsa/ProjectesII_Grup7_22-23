@@ -875,7 +875,7 @@ MonoBehaviour:
   decceleration: 7
   velPower: 0.9
   FrictionAmount: 0.2
-  RecoilForce: 10
+  RecoilForce: 10000
   animator: {fileID: 203465895}
   maxSpeedX: 5
   maxSpeedY: 4.4
@@ -887,6 +887,7 @@ MonoBehaviour:
   coyoteTime: 0.18
   pistolaScript: {fileID: 1348949531}
   fireSound: {fileID: 203465892}
+  recoilON: 0
   personaje: {fileID: 203465889}
   rayOriginTransform: {fileID: 1542492929}
   rb: {fileID: 203465897}
@@ -1246,6 +1247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9cf7f763561c84faa0abffb94af092, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun: {fileID: 1348949524}
+  shootScript: {fileID: 1348949530}
+  pistolaScript: {fileID: 1348949531}
   _characterBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -1267,6 +1271,8 @@ MonoBehaviour:
   _coyoteTimeThreshold: 0.1
   _jumpBuffer: 0.1
   _jumpEndEarlyGravityModifier: 3
+  _recoilForce: 10
+  _veticalProportion: 2
   _freeColliderIterations: 10
 --- !u!50 &203465897
 Rigidbody2D:
@@ -12712,6 +12718,7 @@ MonoBehaviour:
   gunTorque: 2
   recoilForce: -50
   fireRate: 1000
+  ableToShoot: 0
 --- !u!114 &1348949531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12734,7 +12741,7 @@ MonoBehaviour:
   holderDistance: 0.7
   aimHeight: 2
   isWithPlayer: 0
-  angularDrag: 2
+  angularDrag: 0.5
   linearDrag: 2
 --- !u!95 &1348949532
 Animator:
