@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Mov : MonoBehaviour
@@ -56,7 +57,9 @@ public class Mov : MonoBehaviour
     [Header ("Audio")]
     public AudioSource fireSound;
 
-    [Header ("Asociaciones")]
+    [Header("Asociaciones")]
+    public bool recoilON;
+
     public Transform personaje;
 
     public Transform rayOriginTransform;
@@ -79,6 +82,7 @@ public class Mov : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         horizontal = Input.GetAxisRaw("Horizontal");
         escalarGravedad = rb.gravityScale;
+        recoilON = false;
     } 
 
     // Update is called once per frame
@@ -278,10 +282,11 @@ public class Mov : MonoBehaviour
 
     public void recoil()
     {
-        Vector2 xyVector = new Vector2(pistolaScript.gun.transform.right.x, pistolaScript.gun.transform.right.y);
-        xyVector.Normalize();
-        
-        rb.AddForce(xyVector * - RecoilForce, ForceMode2D.Impulse);
+        //Vector2 xyVector = new Vector2(pistolaScript.gun.transform.right.x, pistolaScript.gun.transform.right.y);
+        //xyVector.Normalize();
+
+        //rb.AddForce(xyVector * - RecoilForce);
+        recoilON = true;
     }
 
     void ButtonJump()
