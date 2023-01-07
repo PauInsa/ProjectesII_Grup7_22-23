@@ -49,6 +49,9 @@ public class Shoot : MonoBehaviour
         {
             FlipGun();
         }
+
+        sparkles.transform.position = goBullet.transform.position;
+
     }
 
     public void shoot()
@@ -69,10 +72,12 @@ public class Shoot : MonoBehaviour
                 recoil();
 
             fireSound.Play();
+            
         }
         else
             ableToShoot = false;
-        sparkles.transform.position = goBullet.transform.position;
+
+       
     }
     public void recoil()
     {
