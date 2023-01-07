@@ -24,11 +24,16 @@ public class Enemys : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
     }
     
+    public Transform enemy;
+    public ParticleSystem particle;
+
+
     void Update()
     {
-        if (lifes < 1)
+        if (lifes <= 0)
         {
-            Destroy(gameObject);
+            
+            //Destroy(gameObject);
         }
 
         //Contador color
@@ -39,6 +44,16 @@ public class Enemys : MonoBehaviour
         else
         {
             timer -= Time.deltaTime;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (lifes == 0)
+        {
+            Corpse();
+            lifes = -1;
+            //Destroy(gameObject);
         }
     }
 
@@ -60,6 +75,19 @@ public class Enemys : MonoBehaviour
     {
         //reciveDamage.Play();
         lifes -= damage;
+        
     }
 
+
+    private void Corpse()
+    {
+        particle.Play();
+
+        Vector2 impulse = new Vector2(15.0f, 45.0f);
+        impulse.Normalize();
+        GetComponent<Rigidbody2D>().AddForce(impulse * 4, ForceMode2D.Impulse);
+
+        Vector3 asdd = new Vector3(0, 0, -90f);
+        GetComponent<Transform>().Rotate(asdd);
+    }
 }

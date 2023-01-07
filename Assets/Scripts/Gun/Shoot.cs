@@ -24,6 +24,10 @@ public class Shoot : MonoBehaviour
     public float fireRate;
     float deltaTimeFire;
 
+    public ParticleSystem particleSystem;
+    public ParticleSystem sparkles;
+    GameObject goBullet;
+
     public bool ableToShoot;
 
     // Start is called before the first frame update
@@ -54,9 +58,10 @@ public class Shoot : MonoBehaviour
             ableToShoot = true;
 
             CinemachineMovimientoCamara.Instance.MoverCamara(2.5f, 2.5f, 0.1f);
+            particleSystem.Play();
 
             deltaTimeFire = Time.time + 1 / fireRate;
-            GameObject goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
+            goBullet = Instantiate(bullet, gun.position, shootPoint.rotation);
             goBullet.transform.right = gun.transform.right;
             goBullet.GetComponent<Rigidbody2D>().AddForce(goBullet.transform.right * bulletSpd);
 
@@ -67,6 +72,7 @@ public class Shoot : MonoBehaviour
         }
         else
             ableToShoot = false;
+        sparkles.transform.position = goBullet.transform.position;
     }
     public void recoil()
     {
