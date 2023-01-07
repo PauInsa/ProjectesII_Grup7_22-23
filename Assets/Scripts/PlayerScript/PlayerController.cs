@@ -41,7 +41,8 @@ namespace TarodevController
             CalculateWalk(); // Horizontal movement
             CalculateJumpApex(); // Affects fall speed, so calculate before gravity
             CalculateGravity(); // Vertical movement
-            CalculateJump(); // Possibly overrides vertical
+            if(pistolaScript.isWithPlayer == false)
+                CalculateJump(); // Possibly overrides vertical
             CalculateRecoil();
 
             MoveCharacter(); // Actually perform the axis movement
@@ -168,12 +169,16 @@ namespace TarodevController
         [SerializeField] private float _deAcceleration = 60f;
         [SerializeField] private float _apexBonus = 2;
 
+        [SerializeField] private float _slowProportion = 0.5f;
+
         private void CalculateWalk()
         {
             if (Input.X != 0)
             {
                 // Set horizontal move speed
                 _currentHorizontalSpeed += Input.X * _acceleration * Time.deltaTime;
+                if (pistolaScript.isWithPlayer == true)
+                    _currentHorizontalSpeed *= _slowProportion;
 
                 // clamped by max frame movement
                 _currentHorizontalSpeed = Mathf.Clamp(_currentHorizontalSpeed, -_moveClamp, _moveClamp);
