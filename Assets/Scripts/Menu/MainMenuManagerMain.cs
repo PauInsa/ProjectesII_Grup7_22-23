@@ -7,7 +7,7 @@ public class MainMenuManagerMain : MonoBehaviour
 {
     public void EscenaJuego()
     {
-        SceneManager.LoadScene("Modificado");
+        SceneManager.LoadScene("Level - 1");
     }
 
     public void EscenaOpciones()

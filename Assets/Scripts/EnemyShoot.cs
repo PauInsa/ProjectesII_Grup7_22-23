@@ -16,16 +16,21 @@ public class EnemyShoot : MonoBehaviour
 
     bool startShooting = false;
 
+    public EnemyShootRange RangeCollider;
+
     public GameObject bullet;
     public float bulletSpd;
     public float fireRate;
     public float dissapearTime;
     float deltaTime;
+    public float range;
+    public LayerMask PlayerLayer;
 
-
-    // Update is called once per frame
+    // Update is called once per frame  
     void Update()
     {
+        startShooting = RangeCollider.isColliding;
+
         //Direccion de bala
         Vector2 vectorEnemiePJ = (Vector2)player_pos.position - (Vector2)shootPoint.position;
         //Vector2 xyVector = new Vector2(vectorPjMouse.x, vectorPjMouse.y);
@@ -46,15 +51,5 @@ public class EnemyShoot : MonoBehaviour
             }
         }
       
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            startShooting = true;
-        }
-        else
-            startShooting = false;
     }
 }
