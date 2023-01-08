@@ -18,46 +18,31 @@ public class GrabObjects : MonoBehaviour
     [SerializeField]
     private Transform shotPoint;
 
-    public GameObject gun;
     private int layerIndex;
 
     public float forceThrow = 0f;
-    
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-        layerIndex = LayerMask.NameToLayer("Objects");
-    }
+    public LayerMask grabbableObjectsLayers;
+
+    float grabDelay = 0f;
+
+    public float grabThreshold = 0.2f;
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hitInfo = Physics2D.Raycast(rayPoint.position, Vector2.right*transform.localScale.x, rayDistance);
+        Collider2D col = Physics2D.OverlapCircle(this.transform.position, 0.5f, grabbableObjectsLayers);
 
-        if(hitInfo.collider != null && hitInfo.collider.gameObject.layer == layerIndex)
-        {
-            //grab object
-            pistolaScript.isWithPlayer = true;
-        }
+        grabDelay += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.B) && pistolaScript.isWithPlayer ==true)
+        if(col != null && grabDelay > grabThreshold)
+            pistolaScript.Grab();
+
+        if (Input.GetKeyDown(KeyCode.B) && pistolaScript.isWithPlayer == true)
         {
-            pistolaScript.isWithPlayer = false;
-            gun.GetComponent<Rigidbody2D>().isKinematic = false;
-            //Vector2 xyvector = new Vector2(PlayerAimDirection.localScale.x, PlayerAimDirection.localScale.y);
-            //xyvector.Normalize();
-            //gun.GetComponent<Rigidbody2D>().AddForce(xyvector * forceThrow, ForceMode2D.Impulse);
-            Throw();
-            gun.transform.SetParent(null);
+            grabDelay = 0f;
+            pistolaScript.Throw(forceThrow);
         }
-        //Debug.DrawRay(rayPoint.position, transform.right * rayDistance);
     }
 
-    void Throw()
-    {
-
-        //GameObject gunnana = Instantiate(gun, shotPoint.position, shotPoint.rotation);
-        gun.GetComponent<Rigidbody2D>().velocity = gun.transform.right * forceThrow;
-    }
 }

@@ -8,10 +8,14 @@ public class Bala : MonoBehaviour
     public GameObject enemyStalker;
     public GameObject enemySniper;
 
+    public ParticleSystem particleSystem;
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Wall"))
         {
+            particleSystem.Play();
             Destroy(gameObject);
         }
 
@@ -26,5 +30,8 @@ public class Bala : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
 
+    }
 }

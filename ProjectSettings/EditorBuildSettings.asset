@@ -6,9 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/Jump_Test.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Movimiento perfecto.unity
-    guid: ced88e1b0e14286419bf7bc4ba6a8494
+    path: Assets/Scenes/Menu.unity
+    guid: fd062f8bfb8d6554e877f5fbac3ced82
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 46fe184bff1860648bd96743e1d69bef
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level - 1.unity
+    guid: c0d0967a4c8949744add394290dfd856
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level - 2.unity
+    guid: ba09d581ad0f4d0408d9325c7e2130ca
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level - 3.unity
+    guid: 1b040659af3358b4486cd75941d38093
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level - 4.unity
+    guid: 57898dee2cf6f7648940cf7a98506809
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level - 5.unity
+    guid: 3fb461969cba1f142bef432541d5b9c9
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level - 6.unity
+    guid: be2b9328f1382d842823886b053cc0b5
   m_configObjects: {}
