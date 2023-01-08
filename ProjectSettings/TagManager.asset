@@ -50,3 +50,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: decoration
+    uniqueID: 1921946067
+    locked: 0
+  - name: Game
+    uniqueID: 3595504527
+    locked: 0
+  - name: UI
+    uniqueID: 4026345163
+    locked: 0

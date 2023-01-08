@@ -30,11 +30,6 @@ public class Enemys : MonoBehaviour
 
     void Update()
     {
-        if (lifes <= 0)
-        {
-            
-            //Destroy(gameObject);
-        }
 
         //Contador color
         if(timer <= 0)
