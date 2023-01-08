@@ -17,6 +17,8 @@ public class Pistola : MonoBehaviour
 
     public Animator animator;
 
+    public AudioSource grabSound;
+
     Vector2 direction;
 
     public float holderDistance;
@@ -92,6 +94,8 @@ public class Pistola : MonoBehaviour
         rb.angularDrag = 0;
         isWithPlayer = true;
         animator.SetBool("WithPlayer", true);
+
+        grabSound.Play();
     }
 
     public void Throw(float forceThrow)

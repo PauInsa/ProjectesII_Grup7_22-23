@@ -29,7 +29,6 @@ public class EnemyShoot : MonoBehaviour
     // Update is called once per frame  
     void Update()
     {
-        startShooting = RangeCollider.isColliding;
 
         //Direccion de bala
         Vector2 vectorEnemiePJ = (Vector2)player_pos.position - (Vector2)shootPoint.position;
@@ -37,8 +36,6 @@ public class EnemyShoot : MonoBehaviour
 
         vectorEnemiePJ.Normalize();
 
-        if(startShooting == true)
-        {
             if (Time.time > deltaTime)
             {
                 fireSound.Play();
@@ -49,7 +46,16 @@ public class EnemyShoot : MonoBehaviour
                 Destroy(goBullet, dissapearTime);
 
             }
-        }
       
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            startShooting = true;
+        }
+        else
+            startShooting = false;
     }
 }
