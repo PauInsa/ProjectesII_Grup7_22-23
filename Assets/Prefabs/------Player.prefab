@@ -5153,8 +5153,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -699462769
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1756136226, guid: a5aecabcbe310d2489ab925d4dd70fb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5195,6 +5195,7 @@ MonoBehaviour:
   _moveClamp: 7
   _deAcceleration: 30
   _apexBonus: 2
+  _slowProportion: 0.5
   _fallClamp: -40
   _minFallSpeed: 20
   _maxFallSpeed: 60
