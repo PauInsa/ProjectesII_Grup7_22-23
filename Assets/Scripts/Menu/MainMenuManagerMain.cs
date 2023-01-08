@@ -5,9 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManagerMain : MonoBehaviour
 {
+
+    public AudioSource AudioSource;
     public void EscenaJuego()
     {
         SceneManager.LoadScene("Modificado");
+        AudioSource.Play();
     }
 
     public void EscenaOpciones()

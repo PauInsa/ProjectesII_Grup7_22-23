@@ -17,6 +17,9 @@ public class Pistola : MonoBehaviour
 
     public Animator animator;
 
+    public AudioSource grabSound;
+    public AudioSource throwSound;
+
     Vector2 direction;
 
     public float holderDistance;
@@ -92,6 +95,8 @@ public class Pistola : MonoBehaviour
         rb.angularDrag = 0;
         isWithPlayer = true;
         animator.SetBool("WithPlayer", true);
+
+        grabSound.Play();
     }
 
     public void Throw(float forceThrow)
@@ -105,5 +110,7 @@ public class Pistola : MonoBehaviour
 
         //Add force to throw the gun
         GetComponent<Rigidbody2D>().AddForce(transform.right * forceThrow, ForceMode2D.Impulse);
+
+        throwSound.Play();
     }
 }
