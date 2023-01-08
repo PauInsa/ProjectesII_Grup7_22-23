@@ -50,7 +50,7 @@ public class Shoot : MonoBehaviour
             FlipGun();
         }
 
-        sparkles.transform.position = goBullet.transform.position;
+        sparkles.transform.position = goBullet.transform.position;  
 
     }
 

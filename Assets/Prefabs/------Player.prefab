@@ -5189,12 +5189,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 10241
   _detectorCount: 3
-  _detectionRayLength: 0.4
+  _detectionRayLength: 0.3
   _rayBuffer: 0.1
   _acceleration: 30
   _moveClamp: 7
   _deAcceleration: 30
   _apexBonus: 2
+  _slowProportion: 0.9
   _fallClamp: -40
   _minFallSpeed: 20
   _maxFallSpeed: 60
@@ -5280,6 +5281,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  Level: 
   reciveDamage: {fileID: 7936071656021726058}
 --- !u!82 &7936071656021726059
 AudioSource:

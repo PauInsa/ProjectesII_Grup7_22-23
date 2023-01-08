@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     public GameObject[] hearts;
     int lifes;
 
+    public string Level;
+
     public AudioSource reciveDamage;
 
     // Start is called before the first frame update
@@ -43,10 +45,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Dead()
-    {
-        SceneManager.LoadScene("Movimiento perfecto");
-    }
+    
 
     public void PlayerDamage(int damage)
     {
@@ -61,5 +60,10 @@ public class Player : MonoBehaviour
         {
             PlayerDamage(1);
         }
+    }
+
+    public void Dead()
+    {
+        SceneManager.LoadScene(Level);
     }
 }
